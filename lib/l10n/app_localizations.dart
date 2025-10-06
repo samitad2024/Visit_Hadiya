@@ -162,6 +162,62 @@ class AppLocalizations {
       'am': 'የባህል ጥበቃ እና እድገት',
       'en': 'Cultural preservation and development',
     },
+    // Culture & Traditions
+    'hadiya_culture_title': {
+      'hdy': 'Hadiya Culture & Traditions',
+      'am': 'የሐዲያ ባህል እና ልማዶች',
+      'en': 'Hadiya Culture & Traditions',
+    },
+    'culture_language_title': {
+      'hdy': 'Language',
+      'am': 'ቋንቋ',
+      'en': 'Language',
+    },
+    'culture_language_body': {
+      'hdy': 'Hadiyigna information placeholder. TODO: verify and enrich.',
+      'am': 'ሐዲያኛ የሐዲያ ሕዝብ ዋና ቋንቋ ነው። የተለያዩ ዝርያዎች አሉት።',
+      'en':
+          'Hadiyigna, a Cushitic language, is central to Hadiya identity. Dialects vary across the region.',
+    },
+    'culture_music_title': {
+      'hdy': 'Music & Dance',
+      'am': 'ሙዚቃ እና ዳንስ',
+      'en': 'Music & Dance',
+    },
+    'culture_music_body': {
+      'hdy': 'Music & dance placeholder. TODO: verify.',
+      'am': 'ሙዚቃና ዳንስ በሕይወት ውስጥ አስፈላጊ ሚና አላቸው።',
+      'en':
+          'Music and dance express joy, sorrow, and history in Hadiya culture.',
+    },
+    'culture_festivals_title': {
+      'hdy': 'Festivals',
+      'am': 'በዓላት',
+      'en': 'Festivals',
+    },
+    'culture_festivals_body': {
+      'hdy': 'Festivals placeholder. TODO: verify.',
+      'am': 'ልዩ በዓላት ማኅበረሰቡን ያመቻቹ እና እምነቶችን ያሳያሉ።',
+      'en': 'Festivals celebrate seasons, community bonds, and beliefs.',
+    },
+    'culture_customs_title': {'hdy': 'Customs', 'am': 'ልማዶች', 'en': 'Customs'},
+    'culture_customs_body': {
+      'hdy': 'Customs placeholder. TODO: verify.',
+      'am': 'ልማዶች የዕለት ተዕለት ተግባራትን ይመራሉ።',
+      'en':
+          'Customs guide daily life, respect for elders, and community harmony.',
+    },
+    'culture_social_title': {
+      'hdy': 'Social Structure',
+      'am': 'ማህበራዊ መዋቅር',
+      'en': 'Social Structure',
+    },
+    'culture_social_body': {
+      'hdy': 'Social structure placeholder. TODO: verify.',
+      'am': 'ማህበራዊ መዋቅር በጎሳ እና በሴራ ስርዓት ይመራል።',
+      'en':
+          'Society is organized around clans (gosa) and the Sera system of roles and responsibilities.',
+    },
   };
 
   String t(String key) =>

@@ -103,6 +103,8 @@ class _HomeView extends StatelessWidget {
               onTap: () {
                 if (c.id == 'history') {
                   Navigator.of(context).pushNamed('/history');
+                } else if (c.id == 'culture') {
+                  Navigator.of(context).pushNamed('/culture');
                 }
               },
             ),

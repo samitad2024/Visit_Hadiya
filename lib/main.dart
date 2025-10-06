@@ -7,6 +7,7 @@ import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'ui/screens/welcome_screen.dart';
 import 'ui/screens/history_timeline_screen.dart';
+import 'ui/screens/culture_screen.dart';
 
 void main() {
   runApp(
@@ -41,7 +42,10 @@ class HadiyaHeritageApp extends StatelessWidget {
               DefaultMaterialLocalizations.delegate,
             ],
             builder: DevicePreview.appBuilder,
-            routes: {'/history': (_) => const HistoryTimelineScreen()},
+            routes: {
+              '/history': (_) => const HistoryTimelineScreen(),
+              '/culture': (_) => const CultureScreen(),
+            },
             home: const WelcomeScreen(),
           );
         },
