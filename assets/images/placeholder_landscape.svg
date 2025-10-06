@@ -1,0 +1,19 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f2ebe7"/>
+      <stop offset="100%" stop-color="#e8dfda"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g fill="#c7b8ae">
+    <rect x="0" y="520" width="1200" height="155"/>
+    <circle cx="160" cy="500" r="90"/>
+    <circle cx="250" cy="520" r="60"/>
+    <circle cx="420" cy="520" r="110"/>
+    <circle cx="560" cy="530" r="80"/>
+    <circle cx="740" cy="500" r="120"/>
+    <circle cx="940" cy="540" r="100"/>
+  </g>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9a7f73" font-size="48" font-family="sans-serif" opacity="0.6">Image Placeholder</text>
+</svg>

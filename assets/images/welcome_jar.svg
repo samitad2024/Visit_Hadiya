@@ -1,0 +1,32 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b0d10"/>
+      <stop offset="100%" stop-color="#1a1f24"/>
+    </linearGradient>
+    <radialGradient id="light" cx="50%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#2b2f33"/>
+      <stop offset="100%" stop-color="#0b0d10"/>
+    </radialGradient>
+    <linearGradient id="clay" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#E87B4A"/>
+      <stop offset="100%" stop-color="#B6481E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <ellipse cx="800" cy="780" rx="520" ry="40" fill="#000" opacity="0.35"/>
+  <!-- Simple stylized clay jar -->
+  <g transform="translate(580,210)">
+    <rect x="160" y="0" width="120" height="28" rx="14" fill="#C85A2F"/>
+    <path d="M180,40 h80 a40,40 0 0 1 40,40 v18 h-160 v-18 a40,40 0 0 1 40,-40z" fill="#D96A3B"/>
+    <rect x="120" y="90" width="200" height="340" rx="100" fill="url(#clay)"/>
+    <!-- texture circles -->
+    <g opacity="0.35" fill="#8C3A1C">
+      <circle cx="170" cy="160" r="22"/>
+      <circle cx="270" cy="160" r="22"/>
+      <circle cx="210" cy="230" r="22"/>
+      <circle cx="160" cy="320" r="22"/>
+      <circle cx="260" cy="320" r="22"/>
+    </g>
+  </g>
+</svg>
