@@ -105,6 +105,8 @@ class _HomeView extends StatelessWidget {
                   Navigator.of(context).pushNamed('/history');
                 } else if (c.id == 'culture') {
                   Navigator.of(context).pushNamed('/culture');
+                } else if (c.id == 'persons') {
+                  Navigator.of(context).pushNamed('/icons');
                 }
               },
             ),

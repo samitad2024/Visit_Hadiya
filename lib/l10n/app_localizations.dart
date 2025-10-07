@@ -218,6 +218,72 @@ class AppLocalizations {
       'en':
           'Society is organized around clans (gosa) and the Sera system of roles and responsibilities.',
     },
+    // Icons (Leaders, Warriors, Cultural Icons)
+    'icons_title': {
+      'hdy': 'Hadiya Icons',
+      'am': 'የሐዲያ ታላቅ ፊጣሪዎች',
+      'en': 'Hadiya Icons',
+    },
+    'icons_search_hint': {
+      'hdy': 'Search for Hadiya icons',
+      'am': 'ለሐዲያ ፊጣሪዎች ይፈልጉ',
+      'en': 'Search for Hadiya icons',
+    },
+    'icons_leaders': {'hdy': 'Leaders', 'am': 'መሪዎች', 'en': 'Leaders'},
+    'icons_warriors': {'hdy': 'Warriors', 'am': 'ተዋጊዎች', 'en': 'Warriors'},
+    'icons_cultural': {
+      'hdy': 'Cultural Icons',
+      'am': 'የባህል ፊጣሪዎች',
+      'en': 'Cultural Icons',
+    },
+    'icon_garad_aze': {'hdy': 'Garad Aze', 'am': 'ጋራድ አዜ', 'en': 'Garad Aze'},
+    'icon_garad_sidi_mohammed': {
+      'hdy': 'Garad Sidi Mohammed',
+      'am': 'ጋራድ ሲዲ መሐመድ',
+      'en': 'Garad Sidi Mohammed',
+    },
+    'icon_warrior_1': {'hdy': 'Warrior 1', 'am': 'ተዋጊ 1', 'en': 'Warrior 1'},
+    'icon_warrior_2': {'hdy': 'Warrior 2', 'am': 'ተዋጊ 2', 'en': 'Warrior 2'},
+    'icon_cultural_1': {
+      'hdy': 'Cultural Icon 1',
+      'am': 'የባህል ፊጣሪ 1',
+      'en': 'Cultural Icon 1',
+    },
+    'icon_cultural_2': {
+      'hdy': 'Cultural Icon 2',
+      'am': 'የባህል ፊጣሪ 2',
+      'en': 'Cultural Icon 2',
+    },
+    'icon_leader_18c': {
+      'hdy': '18th Century Leader',
+      'am': 'የ18ኛው ክ/ዘመን መሪ',
+      'en': '18th Century Leader',
+    },
+    'icon_leader_19c': {
+      'hdy': '19th Century Leader',
+      'am': 'የ19ኛው ክ/ዘመን መሪ',
+      'en': '19th Century Leader',
+    },
+    'icon_warrior_19c': {
+      'hdy': '19th Century Warrior',
+      'am': 'የ19ኛው ክ/ዘመን ተዋጊ',
+      'en': '19th Century Warrior',
+    },
+    'icon_warrior_20c': {
+      'hdy': '20th Century Warrior',
+      'am': 'የ20ኛው ክ/ዘመን ተዋጊ',
+      'en': '20th Century Warrior',
+    },
+    'icon_cultural_20c': {
+      'hdy': '20th Century Icon',
+      'am': 'የ20ኛው ክ/ዘመን ፊጣሪ',
+      'en': '20th Century Icon',
+    },
+    'icon_cultural_21c': {
+      'hdy': '21st Century Icon',
+      'am': 'የ21ኛው ክ/ዘመን ፊጣሪ',
+      'en': '21st Century Icon',
+    },
   };
 
   String t(String key) =>
