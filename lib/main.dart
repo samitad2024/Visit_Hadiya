@@ -9,6 +9,8 @@ import 'ui/screens/welcome_screen.dart';
 import 'ui/screens/history_timeline_screen.dart';
 import 'ui/screens/culture_screen.dart';
 import 'ui/screens/icons_screen.dart';
+import 'ui/screens/calendar_screen.dart';
+import 'ui/screens/settings_screen.dart';
 
 void main() {
   runApp(
@@ -47,6 +49,8 @@ class HadiyaHeritageApp extends StatelessWidget {
               '/history': (_) => const HistoryTimelineScreen(),
               '/culture': (_) => const CultureScreen(),
               '/icons': (_) => const IconsScreen(),
+              '/calendar': (_) => const CalendarScreen(),
+              '/settings': (_) => const SettingsScreen(),
             },
             home: const WelcomeScreen(),
           );

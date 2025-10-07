@@ -284,6 +284,44 @@ class AppLocalizations {
       'am': 'የ21ኛው ክ/ዘመን ፊጣሪ',
       'en': '21st Century Icon',
     },
+    // Calendar (Festivals)
+    'calendar_title': {'hdy': 'Hadiya Calendar', 'am': 'የሐዲያ የቀን መቁጠሪያ', 'en': 'Hadiya Calendar'},
+    'upcoming_events': {'hdy': 'Upcoming Events', 'am': 'ቀረቡ የሚመጡ ክስተቶች', 'en': 'Upcoming Events'},
+    'festival_hossana': {'hdy': 'Hossana Festival', 'am': 'የሆሳዕና በዓል', 'en': 'Hossana Festival'},
+    'festival_new_year': {'hdy': 'Hadiya New Year', 'am': 'የሐዲያ አዲስ አመት', 'en': 'Hadiya New Year'},
+    // Settings
+    'settings_title': {'hdy': 'Settings', 'am': 'ቅንብሮች', 'en': 'Settings'},
+    'settings_general': {'hdy': 'General', 'am': 'አጠቃላይ', 'en': 'General'},
+    'settings_language': {'hdy': 'Language', 'am': 'ቋንቋ', 'en': 'Language'},
+    'settings_language_value': {'hdy': 'English', 'am': 'እንግሊዝኛ', 'en': 'English'},
+    'settings_offline_title': {'hdy': 'Offline Access', 'am': 'ከመስመር ውጭ መዳሰስ', 'en': 'Offline Access'},
+    'settings_offline_sub': {
+      'hdy': 'Enable offline access to content',
+      'am': 'ይዘቶችን ከመስመር ውጭ ለመዳሰስ አንቀሳቅስ',
+      'en': 'Enable offline access to content',
+    },
+    'settings_notifications': {'hdy': 'Notifications', 'am': 'ማሳወቂያዎች', 'en': 'Notifications'},
+    'settings_notifications_sub': {
+      'hdy': 'Manage notification preferences',
+      'am': 'የማሳወቂያ ምርጫዎችን ያቀናብሩ',
+      'en': 'Manage notification preferences',
+    },
+    'settings_account': {'hdy': 'Account', 'am': 'መለያ', 'en': 'Account'},
+    'settings_account_details': {'hdy': 'Account Details', 'am': 'የመለያ ዝርዝሮች', 'en': 'Account Details'},
+    'settings_account_details_sub': {
+      'hdy': 'Manage your account details',
+      'am': 'የመለያዎን ዝርዝሮች ያስተዳድሩ',
+      'en': 'Manage your account details',
+    },
+    'settings_about': {'hdy': 'About', 'am': 'ስለ መተግበሪያው', 'en': 'About'},
+    'settings_about_us': {'hdy': 'About Us', 'am': 'ስለ እኛ', 'en': 'About Us'},
+    'settings_about_us_sub': {'hdy': "Learn about the app's mission", 'am': 'የመተግበሪያውን ዓላማ ይወቁ', 'en': "Learn about the app's mission"},
+    'settings_credits': {'hdy': 'Credits', 'am': 'ምንጮች እና ሰራተኞች', 'en': 'Credits'},
+    'settings_credits_sub': {
+      'hdy': 'View content sources and contributors',
+      'am': 'የይዘት ምንጮችን እና አበርካቾችን ይመልከቱ',
+      'en': 'View content sources and contributors',
+    },
   };
 
   String t(String key) =>
