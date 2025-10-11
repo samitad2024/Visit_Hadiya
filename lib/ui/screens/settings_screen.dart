@@ -23,12 +23,18 @@ class _SettingsView extends StatelessWidget {
     final c = context.watch<SettingsController>();
     return Scaffold(
       appBar: AppBar(title: Text(loc.t('settings_title'))),
-      bottomNavigationBar: const NavigationBar(
+      bottomNavigationBar: NavigationBar(
         selectedIndex: 3,
         destinations: [
           NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.explore_outlined), label: 'Explore'),
-          NavigationDestination(icon: Icon(Icons.bookmark_border_rounded), label: 'Saved'),
+          NavigationDestination(
+            icon: Icon(Icons.explore_outlined),
+            label: 'Explore',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.bookmark_border_rounded),
+            label: 'Saved',
+          ),
           NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
@@ -53,7 +59,10 @@ class _SettingsView extends StatelessWidget {
           _Tile(
             title: loc.t('settings_notifications'),
             subtitle: loc.t('settings_notifications_sub'),
-            trailing: Switch(value: c.notifications, onChanged: c.toggleNotifications),
+            trailing: Switch(
+              value: c.notifications,
+              onChanged: c.toggleNotifications,
+            ),
           ),
           const SizedBox(height: 16),
           _SectionHeader(loc.t('settings_account')),
@@ -86,20 +95,29 @@ class _SectionHeader extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0),
-        child: Text(title, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800)),
-      );
+    padding: const EdgeInsets.symmetric(vertical: 12.0),
+    child: Text(
+      title,
+      style: Theme.of(
+        context,
+      ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
+    ),
+  );
 }
 
 class _Tile extends StatelessWidget {
-  const _Tile({required this.title, required this.subtitle, this.trailing, this.onTap});
+  const _Tile({
+    required this.title,
+    required this.subtitle,
+    this.trailing,
+    this.onTap,
+  });
   final String title;
   final String subtitle;
   final Widget? trailing;
   final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     return Card(
       elevation: 0,
       child: InkWell(
@@ -113,9 +131,17 @@ class _Tile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
                     const SizedBox(height: 6),
-                    Text(subtitle, style: Theme.of(context).textTheme.bodyLarge),
+                    Text(
+                      subtitle,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                   ],
                 ),
               ),

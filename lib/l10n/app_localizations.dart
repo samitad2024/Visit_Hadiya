@@ -285,29 +285,61 @@ class AppLocalizations {
       'en': '21st Century Icon',
     },
     // Calendar (Festivals)
-    'calendar_title': {'hdy': 'Hadiya Calendar', 'am': 'የሐዲያ የቀን መቁጠሪያ', 'en': 'Hadiya Calendar'},
-    'upcoming_events': {'hdy': 'Upcoming Events', 'am': 'ቀረቡ የሚመጡ ክስተቶች', 'en': 'Upcoming Events'},
-    'festival_hossana': {'hdy': 'Hossana Festival', 'am': 'የሆሳዕና በዓል', 'en': 'Hossana Festival'},
-    'festival_new_year': {'hdy': 'Hadiya New Year', 'am': 'የሐዲያ አዲስ አመት', 'en': 'Hadiya New Year'},
+    'calendar_title': {
+      'hdy': 'Hadiya Calendar',
+      'am': 'የሐዲያ የቀን መቁጠሪያ',
+      'en': 'Hadiya Calendar',
+    },
+    'upcoming_events': {
+      'hdy': 'Upcoming Events',
+      'am': 'ቀረቡ የሚመጡ ክስተቶች',
+      'en': 'Upcoming Events',
+    },
+    'festival_hossana': {
+      'hdy': 'Hossana Festival',
+      'am': 'የሆሳዕና በዓል',
+      'en': 'Hossana Festival',
+    },
+    'festival_new_year': {
+      'hdy': 'Hadiya New Year',
+      'am': 'የሐዲያ አዲስ አመት',
+      'en': 'Hadiya New Year',
+    },
     // Settings
     'settings_title': {'hdy': 'Settings', 'am': 'ቅንብሮች', 'en': 'Settings'},
     'settings_general': {'hdy': 'General', 'am': 'አጠቃላይ', 'en': 'General'},
     'settings_language': {'hdy': 'Language', 'am': 'ቋንቋ', 'en': 'Language'},
-    'settings_language_value': {'hdy': 'English', 'am': 'እንግሊዝኛ', 'en': 'English'},
-    'settings_offline_title': {'hdy': 'Offline Access', 'am': 'ከመስመር ውጭ መዳሰስ', 'en': 'Offline Access'},
+    'settings_language_value': {
+      'hdy': 'English',
+      'am': 'እንግሊዝኛ',
+      'en': 'English',
+    },
+    'settings_offline_title': {
+      'hdy': 'Offline Access',
+      'am': 'ከመስመር ውጭ መዳሰስ',
+      'en': 'Offline Access',
+    },
     'settings_offline_sub': {
       'hdy': 'Enable offline access to content',
       'am': 'ይዘቶችን ከመስመር ውጭ ለመዳሰስ አንቀሳቅስ',
       'en': 'Enable offline access to content',
     },
-    'settings_notifications': {'hdy': 'Notifications', 'am': 'ማሳወቂያዎች', 'en': 'Notifications'},
+    'settings_notifications': {
+      'hdy': 'Notifications',
+      'am': 'ማሳወቂያዎች',
+      'en': 'Notifications',
+    },
     'settings_notifications_sub': {
       'hdy': 'Manage notification preferences',
       'am': 'የማሳወቂያ ምርጫዎችን ያቀናብሩ',
       'en': 'Manage notification preferences',
     },
     'settings_account': {'hdy': 'Account', 'am': 'መለያ', 'en': 'Account'},
-    'settings_account_details': {'hdy': 'Account Details', 'am': 'የመለያ ዝርዝሮች', 'en': 'Account Details'},
+    'settings_account_details': {
+      'hdy': 'Account Details',
+      'am': 'የመለያ ዝርዝሮች',
+      'en': 'Account Details',
+    },
     'settings_account_details_sub': {
       'hdy': 'Manage your account details',
       'am': 'የመለያዎን ዝርዝሮች ያስተዳድሩ',
@@ -315,12 +347,78 @@ class AppLocalizations {
     },
     'settings_about': {'hdy': 'About', 'am': 'ስለ መተግበሪያው', 'en': 'About'},
     'settings_about_us': {'hdy': 'About Us', 'am': 'ስለ እኛ', 'en': 'About Us'},
-    'settings_about_us_sub': {'hdy': "Learn about the app's mission", 'am': 'የመተግበሪያውን ዓላማ ይወቁ', 'en': "Learn about the app's mission"},
-    'settings_credits': {'hdy': 'Credits', 'am': 'ምንጮች እና ሰራተኞች', 'en': 'Credits'},
+    'settings_about_us_sub': {
+      'hdy': "Learn about the app's mission",
+      'am': 'የመተግበሪያውን ዓላማ ይወቁ',
+      'en': "Learn about the app's mission",
+    },
+    'settings_credits': {
+      'hdy': 'Credits',
+      'am': 'ምንጮች እና ሰራተኞች',
+      'en': 'Credits',
+    },
     'settings_credits_sub': {
       'hdy': 'View content sources and contributors',
       'am': 'የይዘት ምንጮችን እና አበርካቾችን ይመልከቱ',
       'en': 'View content sources and contributors',
+    },
+    // Media Gallery
+    'media_gallery_title': {
+      'hdy': 'Media Gallery',
+      'am': 'ሚዲያ ጋለሪ',
+      'en': 'Media Gallery',
+    },
+    'media_tab_audio': {'hdy': 'Audio', 'am': 'ድምጽ', 'en': 'Audio'},
+    'media_tab_video': {'hdy': 'Video', 'am': 'ቪዲዮ', 'en': 'Video'},
+    'media_tab_photos': {'hdy': 'Photos', 'am': 'ፎቶዎች', 'en': 'Photos'},
+    'media_audio_title': {'hdy': 'Audio', 'am': 'ድምጽ', 'en': 'Audio'},
+    'media_video_title': {'hdy': 'Video', 'am': 'ቪዲዮ', 'en': 'Video'},
+    'media_photos_title': {'hdy': 'Photos', 'am': 'ፎቶዎች', 'en': 'Photos'},
+    // Media categories
+    'media_audio_hadiya_songs': {
+      'hdy': 'Hadiya Songs',
+      'am': 'የሐዲያ መዝሙሮች',
+      'en': 'Hadiya Songs',
+    },
+    'media_audio_folk_songs': {
+      'hdy': 'Folk Songs',
+      'am': 'የሕዝብ መዝሙሮች',
+      'en': 'Folk Songs',
+    },
+    'media_audio_cultural_music': {
+      'hdy': 'Cultural Music',
+      'am': 'ባህላዊ ሙዚቃ',
+      'en': 'Cultural Music',
+    },
+    'media_audio_elders_tales': {
+      'hdy': "Elder's Tales",
+      'am': 'የአሮጌዎች ታሪኮች',
+      'en': "Elder's Tales",
+    },
+    'media_audio_leaders_stories': {
+      'hdy': "Leaders' Stories",
+      'am': 'የመሪዎች ታሪኮች',
+      'en': "Leaders' Stories",
+    },
+    'media_video_documentaries': {
+      'hdy': 'Documentaries',
+      'am': 'ሰነዶች',
+      'en': 'Documentaries',
+    },
+    'media_video_performances': {
+      'hdy': 'Performances',
+      'am': 'ተከናዎች',
+      'en': 'Performances',
+    },
+    'media_photos_historical_sites': {
+      'hdy': 'Historical Sites',
+      'am': 'ታሪካዊ ቦታዎች',
+      'en': 'Historical Sites',
+    },
+    'media_photos_people_culture': {
+      'hdy': 'People & Culture',
+      'am': 'ሰዎች እና ባህል',
+      'en': 'People & Culture',
     },
   };
 

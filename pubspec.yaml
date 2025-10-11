@@ -41,6 +41,15 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   device_preview: ^1.1.0
+  
+  # Additional dependencies for production-ready features
+  shared_preferences: ^2.2.2  # Persistent storage for favorites
+  url_launcher: ^6.2.5        # Launch URLs, maps, phone numbers
+  share_plus: ^7.2.2          # Share festival information
+  cached_network_image: ^3.3.1  # Efficient image loading and caching
+  flutter_staggered_animations: ^1.1.1  # Beautiful list animations
+  smooth_page_indicator: ^1.1.0  # Carousel indicators
+  flutter_staggered_grid_view: ^0.7.0  # Masonry grid layouts
 
 dev_dependencies:
   flutter_test:

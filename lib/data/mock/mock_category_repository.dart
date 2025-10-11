@@ -45,7 +45,7 @@ class MockCategoryRepository {
         titleKey: 'home_audio_title',
         subtitleKey: 'home_audio_sub',
         icon: Icons.headphones_outlined,
-        route: '/audio',
+        route: '/media',
       ),
     ];
   }

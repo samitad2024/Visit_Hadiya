@@ -6,11 +6,14 @@ import 'core/providers/locale_provider.dart';
 import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'ui/screens/welcome_screen.dart';
+import 'ui/screens/festival_home_screen.dart';
 import 'ui/screens/history_timeline_screen.dart';
 import 'ui/screens/culture_screen.dart';
 import 'ui/screens/icons_screen.dart';
 import 'ui/screens/calendar_screen.dart';
 import 'ui/screens/settings_screen.dart';
+import 'ui/screens/media_gallery_screen.dart';
+import 'ui/screens/media_category_screen.dart';
 
 void main() {
   runApp(
@@ -32,7 +35,7 @@ class HadiyaHeritageApp extends StatelessWidget {
         builder: (_, localeProvider, __) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Hadiya Heritage',
+            title: 'Hadiya Heritage - Visit Hadiya',
             theme: buildAppTheme(Brightness.light),
             darkTheme: buildAppTheme(Brightness.dark),
             // Use DevicePreview locale when enabled; else provider
@@ -46,11 +49,14 @@ class HadiyaHeritageApp extends StatelessWidget {
             ],
             builder: DevicePreview.appBuilder,
             routes: {
+              '/home': (_) => const FestivalHomeScreen(),
               '/history': (_) => const HistoryTimelineScreen(),
               '/culture': (_) => const CultureScreen(),
               '/icons': (_) => const IconsScreen(),
               '/calendar': (_) => const CalendarScreen(),
               '/settings': (_) => const SettingsScreen(),
+              '/media': (_) => const MediaGalleryScreen(),
+              '/media/category': (_) => const MediaCategoryScreen(),
             },
             home: const WelcomeScreen(),
           );
