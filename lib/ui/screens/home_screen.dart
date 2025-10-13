@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'historical_sites_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/category_controller.dart';
@@ -67,28 +68,52 @@ class _HomeView extends StatelessWidget {
               children: [
                 Container(
                   height: 220,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        cs.primary.withOpacity(0.85),
-                        cs.primary.withOpacity(0.65),
+                        Color(0xFFB2EBF2),
+                        Color(0xFF80DEEA),
+                        Color(0xFF4DD0E1),
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                   ),
                 ),
-                Positioned.fill(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        loc.t('story_of_week'),
-                        style: Theme.of(context).textTheme.displayMedium
-                            ?.copyWith(color: Colors.white),
+                Positioned(
+                  left: 24,
+                  top: 32,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Explore Hadiya',
+                        style: Theme.of(context).textTheme.headlineMedium
+                            ?.copyWith(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
-                    ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Discover historical sites, culture, icons, and more.',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyLarge?.copyWith(color: Colors.black54),
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const HistoricalSitesScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text('Historical Sites'),
+                      ),
+                    ],
                   ),
                 ),
               ],
