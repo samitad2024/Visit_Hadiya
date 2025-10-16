@@ -38,12 +38,10 @@ class HadiyaHeritageApp extends StatelessWidget {
             title: 'Hadiya Heritage - Visit Hadiya',
             theme: buildAppTheme(Brightness.light),
             darkTheme: buildAppTheme(Brightness.dark),
-            // Use DevicePreview locale when enabled; else provider
             locale: DevicePreview.locale(context) ?? localeProvider.locale,
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: const [
               AppLocalizations.delegate,
-              // Material & Widgets localization strings
               DefaultWidgetsLocalizations.delegate,
               DefaultMaterialLocalizations.delegate,
             ],

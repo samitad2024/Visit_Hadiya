@@ -23,7 +23,6 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
     final items = context.watch<CategoryController>().items;
-    final cs = Theme.of(context).colorScheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -104,12 +103,7 @@ class _HomeView extends StatelessWidget {
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const HistoricalSitesScreen(),
-                            ),
-                          );
+                          // Navigation removed - see Historical Sites category below
                         },
                         child: const Text('Historical Sites'),
                       ),
@@ -130,6 +124,12 @@ class _HomeView extends StatelessWidget {
                   Navigator.of(context).pushNamed('/history');
                 } else if (c.id == 'culture') {
                   Navigator.of(context).pushNamed('/culture');
+                } else if (c.id == 'sites') {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const HistoricalSitesScreen(),
+                    ),
+                  );
                 } else if (c.id == 'persons') {
                   Navigator.of(context).pushNamed('/icons');
                 } else if (c.id == 'festivals') {

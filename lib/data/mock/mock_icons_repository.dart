@@ -18,6 +18,20 @@ class MockIconsRepository {
         imageAsset: 'assets/images/portrait_placeholder.svg',
         category: IconCategory.leader,
       ),
+      PersonIcon(
+        id: 'nigist_eleni',
+        nameKey: 'icon_nigist_eleni',
+        subtitleKey: 'icon_leader_15c',
+        imageAsset: 'assets/images/nigist_eleni.jpeg',
+        category: IconCategory.leader,
+      ),
+      PersonIcon(
+        id: 'professor_beyene',
+        nameKey: 'icon_professor_beyene',
+        subtitleKey: 'icon_leader_20c',
+        imageAsset: 'assets/images/professor_beyene.png',
+        category: IconCategory.leader,
+      ),
       // Warriors
       PersonIcon(
         id: 'warrior_1',

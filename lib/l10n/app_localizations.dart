@@ -242,6 +242,16 @@ class AppLocalizations {
       'am': 'ጋራድ ሲዲ መሐመድ',
       'en': 'Garad Sidi Mohammed',
     },
+    'icon_nigist_eleni': {
+      'hdy': 'Nigist Eleni',
+      'am': 'ንግስት እሌኒ',
+      'en': 'Queen Eleni',
+    },
+    'icon_professor_beyene': {
+      'hdy': 'Professor Beyene',
+      'am': 'ፕሮፌሰር በየነ',
+      'en': 'Professor Beyene',
+    },
     'icon_warrior_1': {'hdy': 'Warrior 1', 'am': 'ተዋጊ 1', 'en': 'Warrior 1'},
     'icon_warrior_2': {'hdy': 'Warrior 2', 'am': 'ተዋጊ 2', 'en': 'Warrior 2'},
     'icon_cultural_1': {
@@ -263,6 +273,16 @@ class AppLocalizations {
       'hdy': '19th Century Leader',
       'am': 'የ19ኛው ክ/ዘመን መሪ',
       'en': '19th Century Leader',
+    },
+    'icon_leader_15c': {
+      'hdy': '15th Century Leader',
+      'am': 'የ15ኛው ክ/ዘመን መሪ',
+      'en': '15th Century Leader',
+    },
+    'icon_leader_20c': {
+      'hdy': '20th Century Leader',
+      'am': 'የ20ኛው ክ/ዘመን መሪ',
+      'en': '20th Century Leader',
     },
     'icon_warrior_19c': {
       'hdy': '19th Century Warrior',
