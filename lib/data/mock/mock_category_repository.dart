@@ -19,13 +19,7 @@ class MockCategoryRepository {
         icon: Icons.groups_3,
         route: '/culture',
       ),
-      Category(
-        id: 'sites',
-        titleKey: 'home_sites_title',
-        subtitleKey: 'home_sites_sub',
-        icon: Icons.place_outlined,
-        route: '/sites',
-      ),
+      // Removed Historical Sites category
       Category(
         id: 'persons',
         titleKey: 'home_persons_title',

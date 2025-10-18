@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/asset_image.dart';
 
 class IconDetailScreen extends StatelessWidget {
   const IconDetailScreen({
@@ -23,7 +23,7 @@ class IconDetailScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             child: AspectRatio(
               aspectRatio: 1,
-              child: SvgPicture.asset(asset, fit: BoxFit.cover),
+              child: AssetImageOrSvg(asset, fit: BoxFit.cover),
             ),
           ),
           const SizedBox(height: 16),

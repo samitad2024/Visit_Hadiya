@@ -440,6 +440,47 @@ class AppLocalizations {
       'am': 'ሰዎች እና ባህል',
       'en': 'People & Culture',
     },
+    // Historical sites (names and subtitles)
+    'site_chebera_name': {
+      'hdy': 'Chebera Churchura National Park',
+      'am': 'የቸበራ ቹርቹራ ናሽናል ፓርክ',
+      'en': 'Chebera Churchura National Park',
+    },
+    'site_chebera_sub': {
+      'hdy': 'Diverse wildlife and stunning landscapes.',
+      'am': 'በብዙ የዱር እንስሳት እና ተወዳጅ ተፈጥሯዊ መዓዛ የታወቀ።',
+      'en': 'A vast park with diverse wildlife and stunning landscapes.',
+    },
+    'site_wonchi_name': {
+      'hdy': 'Lake Wonchi',
+      'am': 'ወንጭ ሐይቅ',
+      'en': 'Lake Wonchi',
+    },
+    'site_wonchi_sub': {
+      'hdy': 'Crater lake with hot springs and monastery.',
+      'am': 'በሙቀት የሚፈስ ውሃ እና መካከለኛ ገዳም ያለው ክሬተር ሐይቅ።',
+      'en': 'A crater lake with hot springs and a monastery.',
+    },
+    'site_tiya_name': {
+      'hdy': 'Tiya Stones',
+      'am': 'ጢያ ድንጋዮች',
+      'en': 'Tiya Stones',
+    },
+    'site_tiya_sub': {
+      'hdy': 'UNESCO World Heritage stelae site.',
+      'am': 'የዩኔስኮ የዓለም ቅርስ ድንጋዮች ቦታ።',
+      'en': 'A UNESCO World Heritage site with ancient stelae.',
+    },
+    'site_adadi_name': {
+      'hdy': 'Adadi Mariam',
+      'am': 'አዳዲ ማርያም',
+      'en': 'Adadi Mariam',
+    },
+    'site_adadi_sub': {
+      'hdy': 'Rock-hewn church similar to Lalibela.',
+      'am': 'ለሊበላን የሚመስል ከድንጋይ የተቆረጠ ቤተ ክርስቲያን።',
+      'en': 'A rock-hewn church similar to those in Lalibela.',
+    },
   };
 
   String t(String key) =>

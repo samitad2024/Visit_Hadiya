@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/asset_image.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/history_controller.dart';
@@ -76,7 +77,7 @@ class _HistoryView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           child: AspectRatio(
                             aspectRatio: 16 / 9,
-                            child: SvgPicture.asset(
+                            child: AssetImageOrSvg(
                               e.imageAsset,
                               fit: BoxFit.cover,
                             ),

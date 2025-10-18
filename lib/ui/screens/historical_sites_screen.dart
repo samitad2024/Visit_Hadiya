@@ -1,78 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class HistoricalSite {
-  final String name;
-  final String description;
-  final String imageUrl;
+import '../../controllers/historical_sites_controller.dart';
+import '../../l10n/app_localizations.dart';
+import '../widgets/asset_image.dart';
 
-  HistoricalSite({
-    required this.name,
-    required this.description,
-    required this.imageUrl,
-  });
-}
-
-class HistoricalSitesScreen extends StatefulWidget {
-  const HistoricalSitesScreen({Key? key}) : super(key: key);
-
-  @override
-  State<HistoricalSitesScreen> createState() => _HistoricalSitesScreenState();
-}
-
-class _HistoricalSitesScreenState extends State<HistoricalSitesScreen> {
-  final List<HistoricalSite> sites = [
-    HistoricalSite(
-      name: 'Chebera Churchura National Park',
-      description: 'A vast park with diverse wildlife and stunning landscapes.',
-      imageUrl: 'assets/images/chebera_churchura.jpg',
-    ),
-    HistoricalSite(
-      name: 'Lake Wonchi',
-      description: 'A crater lake with hot springs and a monastery.',
-      imageUrl: 'assets/images/lake_wonchi.jpg',
-    ),
-    HistoricalSite(
-      name: 'Tiya Stones',
-      description: 'A UNESCO World Heritage site with ancient stelae.',
-      imageUrl: 'assets/images/tiya_stones.jpg',
-    ),
-    HistoricalSite(
-      name: 'Adadi Mariam',
-      description: 'A rock-hewn church similar to those in Lalibela.',
-      imageUrl: 'assets/images/adadi_mariam.jpg',
-    ),
-  ];
-
-  String searchQuery = '';
+class HistoricalSitesScreen extends StatelessWidget {
+  const HistoricalSitesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final filteredSites = sites
-        .where(
-          (site) =>
-              site.name.toLowerCase().contains(searchQuery.toLowerCase()) ||
-              site.description.toLowerCase().contains(
-                searchQuery.toLowerCase(),
-              ),
-        )
-        .toList();
+    return ChangeNotifierProvider(
+      create: (_) => HistoricalSitesController()..load(),
+      child: const _HistoricalSitesView(),
+    );
+  }
+}
 
+class _HistoricalSitesView extends StatelessWidget {
+  const _HistoricalSitesView();
+
+  @override
+  Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
+    final controller = context.watch<HistoricalSitesController>();
+    final sites = controller.sites;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hadiya Historical Sites'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        title: Text(loc.t('home_sites_title')),
+        leading: BackButton(onPressed: () => Navigator.of(context).maybePop()),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              onChanged: controller.setQuery,
               decoration: InputDecoration(
                 hintText: 'Search historical sites...',
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(24.0),
                 ),
@@ -81,11 +47,6 @@ class _HistoricalSitesScreenState extends State<HistoricalSitesScreen> {
                   horizontal: 16,
                 ),
               ),
-              onChanged: (value) {
-                setState(() {
-                  searchQuery = value;
-                });
-              },
             ),
           ),
           Padding(
@@ -106,14 +67,14 @@ class _HistoricalSitesScreenState extends State<HistoricalSitesScreen> {
                 mainAxisSpacing: 16,
                 childAspectRatio: 0.85,
               ),
-              itemCount: filteredSites.length,
+              itemCount: sites.length,
               itemBuilder: (context, index) {
-                final site = filteredSites[index];
+                final s = sites[index];
                 return Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  elevation: 2,
+                  elevation: 0,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -122,23 +83,12 @@ class _HistoricalSitesScreenState extends State<HistoricalSitesScreen> {
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16),
                         ),
-                        child: Image.asset(
-                          site.imageUrl,
-                          height: 100,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              height: 100,
-                              color: Colors.blueGrey.shade50,
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.image_not_supported_outlined,
-                                size: 26,
-                                color: Colors.grey,
-                              ),
-                            );
-                          },
+                        child: AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: AssetImageOrSvg(
+                            s.imageAsset,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       Expanded(
@@ -146,25 +96,20 @@ class _HistoricalSitesScreenState extends State<HistoricalSitesScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                site.name,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                ),
+                                loc.t(s.nameKey),
+                                style: Theme.of(context).textTheme.titleSmall
+                                    ?.copyWith(fontWeight: FontWeight.bold),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 4),
                               Expanded(
                                 child: Text(
-                                  site.description,
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: Colors.grey[600],
-                                  ),
+                                  loc.t(s.subtitleKey),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(color: Colors.grey[600]),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -198,39 +143,10 @@ class _HistoricalSitesScreenState extends State<HistoricalSitesScreen> {
                 },
                 icon: const Icon(Icons.map),
                 label: const Text('View All on Map'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue[700],
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
               ),
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // Home
-        onTap: (index) {
-          // TODO: Integrate navigation
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            label: 'Favorites',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info_outline),
-            label: 'About',
-          ),
-        ],
-        selectedItemColor: Colors.blue[700],
-        unselectedItemColor: Colors.grey[600],
-        type: BottomNavigationBarType.fixed,
       ),
     );
   }

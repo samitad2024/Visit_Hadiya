@@ -5,61 +5,63 @@ class MockIconsRepository {
     return const [
       // Leaders
       PersonIcon(
-        id: 'garad_aze',
-        nameKey: 'icon_garad_aze',
-        subtitleKey: 'icon_leader_18c',
-        imageAsset: 'assets/images/portrait_placeholder.svg',
-        category: IconCategory.leader,
-      ),
-      PersonIcon(
-        id: 'garad_sidi_mohammed',
-        nameKey: 'icon_garad_sidi_mohammed',
-        subtitleKey: 'icon_leader_19c',
-        imageAsset: 'assets/images/portrait_placeholder.svg',
-        category: IconCategory.leader,
-      ),
-      PersonIcon(
         id: 'nigist_eleni',
         nameKey: 'icon_nigist_eleni',
-        subtitleKey: 'icon_leader_15c',
+        subtitleKey: '15th-century queen, a symbol of Hadiya sovereignty',
         imageAsset: 'assets/images/nigist_eleni.jpeg',
         category: IconCategory.leader,
       ),
       PersonIcon(
         id: 'professor_beyene',
         nameKey: 'icon_professor_beyene',
-        subtitleKey: 'icon_leader_20c',
+        subtitleKey:
+            'Academic and political leader advocating for Hadiya rights',
         imageAsset: 'assets/images/professor_beyene.png',
         category: IconCategory.leader,
       ),
+
       // Warriors
       PersonIcon(
-        id: 'warrior_1',
-        nameKey: 'icon_warrior_1',
+        id: 'Colonel_Bezabih_Petros',
+        nameKey: 'Colonel Bezabih Petros',
         subtitleKey: 'icon_warrior_19c',
-        imageAsset: 'assets/images/portrait_placeholder.svg',
+        imageAsset: 'assets/images/colonel_bezabih_petros.png',
         category: IconCategory.warrior,
       ),
       PersonIcon(
-        id: 'warrior_2',
-        nameKey: 'icon_warrior_2',
-        subtitleKey: 'icon_warrior_20c',
-        imageAsset: 'assets/images/portrait_placeholder.svg',
+        id: 'fitawrari_geja_geribo',
+        nameKey: 'Fitawrari Geja Geribo',
+        subtitleKey: 'Respected military leader in the 20th century',
+        imageAsset: 'images/Fitawurari_Geja_Geribo.png',
         category: IconCategory.warrior,
       ),
       // Cultural Icons
       PersonIcon(
         id: 'cultural_1',
-        nameKey: 'icon_cultural_1',
-        subtitleKey: 'icon_cultural_20c',
-        imageAsset: 'assets/images/portrait_placeholder.svg',
+        nameKey: 'Beautiful Hadiyya Women',
+        subtitleKey: 'Represents the beauty and resilience of Hadiya women',
+        imageAsset: 'assets/images/hadiya_women.png',
         category: IconCategory.cultural,
       ),
       PersonIcon(
         id: 'cultural_2',
-        nameKey: 'icon_cultural_2',
-        subtitleKey: 'icon_cultural_21c',
-        imageAsset: 'assets/images/portrait_placeholder.svg',
+        nameKey: 'Beautiful Hadiyya Women',
+        subtitleKey: 'Showcasing traditional attire across generations',
+        imageAsset: 'assets/images/old_hadiya_women.png',
+        category: IconCategory.cultural,
+      ),
+      PersonIcon(
+        id: 'cultural_3',
+        nameKey: 'Hadiyya Cultural Dressing',
+        subtitleKey: 'Full spectrum of Hadiya traditional clothing',
+        imageAsset: 'assets/images/artists.png',
+        category: IconCategory.cultural,
+      ),
+      PersonIcon(
+        id: 'cultural_4',
+        nameKey: 'music artist',
+        subtitleKey: 'Keeper of Hadiya\'s rich musical tradition',
+        imageAsset: 'assets/images/artist_collection.png',
         category: IconCategory.cultural,
       ),
     ];

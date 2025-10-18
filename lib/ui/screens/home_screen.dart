@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'historical_sites_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/category_controller.dart';
@@ -124,12 +123,6 @@ class _HomeView extends StatelessWidget {
                   Navigator.of(context).pushNamed('/history');
                 } else if (c.id == 'culture') {
                   Navigator.of(context).pushNamed('/culture');
-                } else if (c.id == 'sites') {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const HistoricalSitesScreen(),
-                    ),
-                  );
                 } else if (c.id == 'persons') {
                   Navigator.of(context).pushNamed('/icons');
                 } else if (c.id == 'festivals') {

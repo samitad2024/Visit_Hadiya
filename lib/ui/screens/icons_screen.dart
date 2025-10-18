@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/icons_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/person_icon.dart';
+import '../widgets/asset_image.dart';
 import 'icon_detail_screen.dart';
 
 class IconsScreen extends StatelessWidget {
@@ -148,7 +148,7 @@ class _IconTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: SvgPicture.asset(asset, fit: BoxFit.cover),
+                  child: AssetImageOrSvg(asset, fit: BoxFit.cover),
                 ),
               ),
               const SizedBox(height: 10),
