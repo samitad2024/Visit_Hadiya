@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../controllers/media_controller.dart';
 import '../../l10n/app_localizations.dart';
@@ -219,24 +220,105 @@ class _CategoryCard extends StatelessWidget {
                 color: cs.surfaceVariant,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Center(
-                child: Icon(
-                  switch (category.type) {
-                    MediaType.audio => Icons.headphones,
-                    MediaType.video => Icons.play_circle,
-                    MediaType.photo => Icons.photo_library_rounded,
-                  },
-                  size: 40,
-                  color: cs.onSurfaceVariant,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // Background Image
+                    if (category.imageUrl != null)
+                      category.imageUrl!.startsWith('http')
+                          ? CachedNetworkImage(
+                              imageUrl: category.imageUrl!,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Container(
+                                color: cs.surfaceVariant,
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                    color: cs.primary,
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Container(
+                                color: cs.surfaceVariant,
+                                child: Icon(
+                                  switch (category.type) {
+                                    MediaType.audio => Icons.headphones,
+                                    MediaType.video => Icons.play_circle,
+                                    MediaType.photo =>
+                                      Icons.photo_library_rounded,
+                                  },
+                                  size: 40,
+                                  color: cs.onSurfaceVariant,
+                                ),
+                              ),
+                            )
+                          : Image.asset(
+                              category.imageUrl!,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  color: cs.surfaceVariant,
+                                  child: Icon(
+                                    switch (category.type) {
+                                      MediaType.audio => Icons.headphones,
+                                      MediaType.video => Icons.play_circle,
+                                      MediaType.photo =>
+                                        Icons.photo_library_rounded,
+                                    },
+                                    size: 40,
+                                    color: cs.onSurfaceVariant,
+                                  ),
+                                );
+                              },
+                            ),
+
+                    // Gradient overlay
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.7),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    // Icon
+                    Center(
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.3),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          switch (category.type) {
+                            MediaType.audio => Icons.headphones,
+                            MediaType.video => Icons.play_circle,
+                            MediaType.photo => Icons.photo_library_rounded,
+                          },
+                          size: 32,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            Text(
-              loc.t(category.titleKey),
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Text(
+                loc.t(category.titleKey),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
             ),
           ],
         ),

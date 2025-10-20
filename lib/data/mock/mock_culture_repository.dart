@@ -14,11 +14,6 @@ class MockCultureRepository {
         bodyKey: 'culture_music_body',
       ),
       CultureTopic(
-        id: 'festivals',
-        titleKey: 'culture_festivals_title',
-        bodyKey: 'culture_festivals_body',
-      ),
-      CultureTopic(
         id: 'customs',
         titleKey: 'culture_customs_title',
         bodyKey: 'culture_customs_body',

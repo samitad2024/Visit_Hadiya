@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../controllers/media_controller.dart';
 import '../../models/media_item.dart';
 import '../../l10n/app_localizations.dart';
+import 'audio_player_screen.dart';
+import 'video_player_screen.dart';
+import 'photo_viewer_screen.dart';
 
 class MediaCategoryScreen extends StatelessWidget {
   const MediaCategoryScreen({super.key});
@@ -27,7 +31,6 @@ class _MediaCategoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = context.watch<MediaController>();
     final items = controller.itemsForCategory(category.id);
-    // final cs = Theme.of(context).colorScheme;
     final loc = AppLocalizations.of(context);
 
     return Scaffold(
@@ -43,7 +46,7 @@ class _MediaCategoryView extends StatelessWidget {
         itemCount: items.length,
         itemBuilder: (context, index) {
           final item = items[index];
-          return _ItemCard(item: item);
+          return _ItemCard(item: item, allItems: items);
         },
       ),
     );
@@ -51,95 +54,157 @@ class _MediaCategoryView extends StatelessWidget {
 }
 
 class _ItemCard extends StatelessWidget {
-  const _ItemCard({required this.item});
+  const _ItemCard({required this.item, required this.allItems});
   final MediaItem item;
+  final List<MediaItem> allItems;
+
+  void _openMedia(BuildContext context) {
+    switch (item.type) {
+      case MediaType.audio:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                AudioPlayerScreen(mediaItem: item, playlist: allItems),
+          ),
+        );
+        break;
+      case MediaType.video:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                VideoPlayerScreen(mediaItem: item, playlist: allItems),
+          ),
+        );
+        break;
+      case MediaType.photo:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                PhotoViewerScreen(mediaItem: item, gallery: allItems),
+          ),
+        );
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return InkWell(
-      onTap: () {
-        // Stub: show bottom sheet preview
-        showModalBottomSheet(
-          context: context,
-          showDragHandle: true,
-          builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.title,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Icon(switch (item.type) {
-                        MediaType.audio => Icons.headphones,
-                        MediaType.video => Icons.play_circle,
-                        MediaType.photo => Icons.photo,
-                      }, color: cs.primary),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          item.subtitle ?? 'Preview not implemented yet',
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.check),
-                      label: const Text('Close'),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      },
+      onTap: () => _openMedia(context),
+      borderRadius: BorderRadius.circular(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 140,
-            decoration: BoxDecoration(
-              color: cs.surfaceVariant,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Center(
-              child: Icon(
-                switch (item.type) {
-                  MediaType.audio => Icons.graphic_eq,
-                  MediaType.video => Icons.ondemand_video,
-                  MediaType.photo => Icons.photo,
-                },
-                color: cs.onSurfaceVariant,
-                size: 40,
+          // Thumbnail
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: cs.surfaceVariant,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // Image
+                    item.thumbnailUrl.startsWith('http')
+                        ? CachedNetworkImage(
+                            imageUrl: item.thumbnailUrl,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Container(
+                              color: cs.surfaceVariant,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: cs.primary,
+                                ),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) => Container(
+                              color: cs.surfaceVariant,
+                              child: Icon(
+                                _getIconForType(item.type),
+                                size: 40,
+                                color: cs.onSurfaceVariant,
+                              ),
+                            ),
+                          )
+                        : Image.asset(
+                            item.thumbnailUrl,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                color: cs.surfaceVariant,
+                                child: Icon(
+                                  _getIconForType(item.type),
+                                  size: 40,
+                                  color: cs.onSurfaceVariant,
+                                ),
+                              );
+                            },
+                          ),
+
+                    // Overlay icon
+                    Center(
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          _getPlayIconForType(item.type),
+                          color: Colors.white,
+                          size: 32,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
           const SizedBox(height: 10),
-          Text(
-            item.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+          // Title
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: Text(
+              item.title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
           ),
         ],
       ),
     );
+  }
+
+  IconData _getIconForType(MediaType type) {
+    switch (type) {
+      case MediaType.audio:
+        return Icons.music_note;
+      case MediaType.video:
+        return Icons.videocam;
+      case MediaType.photo:
+        return Icons.photo;
+    }
+  }
+
+  IconData _getPlayIconForType(MediaType type) {
+    switch (type) {
+      case MediaType.audio:
+        return Icons.play_circle_filled;
+      case MediaType.video:
+        return Icons.play_circle_filled;
+      case MediaType.photo:
+        return Icons.photo_library;
+    }
   }
 }

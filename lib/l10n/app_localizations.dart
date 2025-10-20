@@ -190,16 +190,6 @@ class AppLocalizations {
       'en':
           'Music and dance express joy, sorrow, and history in Hadiya culture.',
     },
-    'culture_festivals_title': {
-      'hdy': 'Festivals',
-      'am': 'በዓላት',
-      'en': 'Festivals',
-    },
-    'culture_festivals_body': {
-      'hdy': 'Festivals placeholder. TODO: verify.',
-      'am': 'ልዩ በዓላት ማኅበረሰቡን ያመቻቹ እና እምነቶችን ያሳያሉ።',
-      'en': 'Festivals celebrate seasons, community bonds, and beliefs.',
-    },
     'culture_customs_title': {'hdy': 'Customs', 'am': 'ልማዶች', 'en': 'Customs'},
     'culture_customs_body': {
       'hdy': 'Customs placeholder. TODO: verify.',
