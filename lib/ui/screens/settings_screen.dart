@@ -3,17 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../controllers/settings_controller.dart';
+import '../../core/providers/app_settings_provider.dart';
 import '../../l10n/app_localizations.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => SettingsController(),
-      child: const _SettingsView(),
-    );
+    return const _SettingsView();
   }
 }
 
@@ -22,7 +19,7 @@ class _SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
-    final c = context.watch<SettingsController>();
+    final settings = context.watch<AppSettingsProvider>();
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
 
@@ -73,36 +70,36 @@ class _SettingsView extends StatelessWidget {
                   icon: Icons.brightness_6_outlined,
                   iconColor: cs.primary,
                   title: 'Theme',
-                  subtitle: _getThemeName(c.themeMode),
+                  subtitle: _getThemeName(settings.themeMode),
                   trailing: Icon(
                     Icons.chevron_right_rounded,
                     color: cs.primary,
                   ),
-                  onTap: () => _showThemeDialog(context, c),
+                  onTap: () => _showThemeDialog(context, settings),
                 ),
                 const Divider(height: 1, indent: 56),
                 _SettingsTile(
                   icon: Icons.language_outlined,
                   iconColor: cs.secondary,
                   title: loc.t('settings_language'),
-                  subtitle: _getLanguageName(c.languageCode),
+                  subtitle: _getLanguageName(settings.languageCode),
                   trailing: Icon(
                     Icons.chevron_right_rounded,
                     color: cs.primary,
                   ),
-                  onTap: () => _showLanguageDialog(context, c),
+                  onTap: () => _showLanguageDialog(context, settings),
                 ),
                 const Divider(height: 1, indent: 56),
                 _SettingsTile(
                   icon: Icons.text_fields_outlined,
                   iconColor: cs.tertiary,
                   title: 'Text Size',
-                  subtitle: _getTextSizeName(c.textSize),
+                  subtitle: _getTextSizeName(settings.textSize),
                   trailing: Icon(
                     Icons.chevron_right_rounded,
                     color: cs.primary,
                   ),
-                  onTap: () => _showTextSizeDialog(context, c),
+                  onTap: () => _showTextSizeDialog(context, settings),
                 ),
               ],
             ),
@@ -120,8 +117,8 @@ class _SettingsView extends StatelessWidget {
                   title: loc.t('settings_offline_title'),
                   subtitle: loc.t('settings_offline_sub'),
                   trailing: Switch(
-                    value: c.offline,
-                    onChanged: c.toggleOffline,
+                    value: settings.offlineMode,
+                    onChanged: settings.setOfflineMode,
                   ),
                 ),
                 const Divider(height: 1, indent: 56),
@@ -131,8 +128,8 @@ class _SettingsView extends StatelessWidget {
                   title: loc.t('settings_notifications'),
                   subtitle: loc.t('settings_notifications_sub'),
                   trailing: Switch(
-                    value: c.notifications,
-                    onChanged: c.toggleNotifications,
+                    value: settings.notificationsEnabled,
+                    onChanged: settings.setNotifications,
                   ),
                 ),
                 const Divider(height: 1, indent: 56),
@@ -145,7 +142,7 @@ class _SettingsView extends StatelessWidget {
                     Icons.chevron_right_rounded,
                     color: cs.primary,
                   ),
-                  onTap: () => _showClearCacheDialog(context, c),
+                  onTap: () => _showClearCacheDialog(context, settings),
                 ),
               ],
             ),
@@ -328,7 +325,7 @@ class _SettingsView extends StatelessWidget {
     }
   }
 
-  void _showThemeDialog(BuildContext context, SettingsController c) {
+  void _showThemeDialog(BuildContext context, AppSettingsProvider settings) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -339,27 +336,27 @@ class _SettingsView extends StatelessWidget {
             RadioListTile<AppThemeMode>(
               title: const Text('Light'),
               value: AppThemeMode.light,
-              groupValue: c.themeMode,
+              groupValue: settings.themeMode,
               onChanged: (value) {
-                if (value != null) c.setThemeMode(value);
+                if (value != null) settings.setThemeMode(value);
                 Navigator.pop(context);
               },
             ),
             RadioListTile<AppThemeMode>(
               title: const Text('Dark'),
               value: AppThemeMode.dark,
-              groupValue: c.themeMode,
+              groupValue: settings.themeMode,
               onChanged: (value) {
-                if (value != null) c.setThemeMode(value);
+                if (value != null) settings.setThemeMode(value);
                 Navigator.pop(context);
               },
             ),
             RadioListTile<AppThemeMode>(
               title: const Text('System Default'),
               value: AppThemeMode.system,
-              groupValue: c.themeMode,
+              groupValue: settings.themeMode,
               onChanged: (value) {
-                if (value != null) c.setThemeMode(value);
+                if (value != null) settings.setThemeMode(value);
                 Navigator.pop(context);
               },
             ),
@@ -369,7 +366,7 @@ class _SettingsView extends StatelessWidget {
     );
   }
 
-  void _showLanguageDialog(BuildContext context, SettingsController c) {
+  void _showLanguageDialog(BuildContext context, AppSettingsProvider settings) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -380,27 +377,27 @@ class _SettingsView extends StatelessWidget {
             RadioListTile<String>(
               title: const Text('English'),
               value: 'en',
-              groupValue: c.languageCode,
+              groupValue: settings.languageCode,
               onChanged: (value) {
-                if (value != null) c.setLanguage(value);
+                if (value != null) settings.setLanguage(value);
                 Navigator.pop(context);
               },
             ),
             RadioListTile<String>(
               title: const Text('አማርኛ (Amharic)'),
               value: 'am',
-              groupValue: c.languageCode,
+              groupValue: settings.languageCode,
               onChanged: (value) {
-                if (value != null) c.setLanguage(value);
+                if (value != null) settings.setLanguage(value);
                 Navigator.pop(context);
               },
             ),
             RadioListTile<String>(
               title: const Text('Hadiyigna'),
               value: 'hdy',
-              groupValue: c.languageCode,
+              groupValue: settings.languageCode,
               onChanged: (value) {
-                if (value != null) c.setLanguage(value);
+                if (value != null) settings.setLanguage(value);
                 Navigator.pop(context);
               },
             ),
@@ -410,7 +407,7 @@ class _SettingsView extends StatelessWidget {
     );
   }
 
-  void _showTextSizeDialog(BuildContext context, SettingsController c) {
+  void _showTextSizeDialog(BuildContext context, AppSettingsProvider settings) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -421,27 +418,27 @@ class _SettingsView extends StatelessWidget {
             RadioListTile<TextSizeMode>(
               title: const Text('Small', style: TextStyle(fontSize: 14)),
               value: TextSizeMode.small,
-              groupValue: c.textSize,
+              groupValue: settings.textSize,
               onChanged: (value) {
-                if (value != null) c.setTextSize(value);
+                if (value != null) settings.setTextSize(value);
                 Navigator.pop(context);
               },
             ),
             RadioListTile<TextSizeMode>(
               title: const Text('Medium', style: TextStyle(fontSize: 16)),
               value: TextSizeMode.medium,
-              groupValue: c.textSize,
+              groupValue: settings.textSize,
               onChanged: (value) {
-                if (value != null) c.setTextSize(value);
+                if (value != null) settings.setTextSize(value);
                 Navigator.pop(context);
               },
             ),
             RadioListTile<TextSizeMode>(
               title: const Text('Large', style: TextStyle(fontSize: 18)),
               value: TextSizeMode.large,
-              groupValue: c.textSize,
+              groupValue: settings.textSize,
               onChanged: (value) {
-                if (value != null) c.setTextSize(value);
+                if (value != null) settings.setTextSize(value);
                 Navigator.pop(context);
               },
             ),
@@ -451,7 +448,8 @@ class _SettingsView extends StatelessWidget {
     );
   }
 
-  void _showClearCacheDialog(BuildContext context, SettingsController c) {
+  void _showClearCacheDialog(
+      BuildContext context, AppSettingsProvider settings) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -465,12 +463,24 @@ class _SettingsView extends StatelessWidget {
             child: const Text('Cancel'),
           ),
           FilledButton(
-            onPressed: () {
-              c.clearCache();
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Cache cleared successfully')),
-              );
+            onPressed: () async {
+              try {
+                await settings.clearCache();
+                if (context.mounted) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Cache cleared successfully')),
+                  );
+                }
+              } catch (e) {
+                if (context.mounted) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Error clearing cache: $e')),
+                  );
+                }
+              }
             },
             child: const Text('Clear'),
           ),

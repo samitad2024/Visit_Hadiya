@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 
-import 'core/providers/locale_provider.dart';
+import 'core/providers/app_settings_provider.dart';
 import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'ui/screens/welcome_screen.dart';
@@ -30,22 +30,52 @@ class HadiyaHeritageApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => LocaleProvider(),
-      child: Consumer<LocaleProvider>(
-        builder: (_, localeProvider, __) {
+      create: (_) => AppSettingsProvider(),
+      child: Consumer<AppSettingsProvider>(
+        builder: (context, settings, __) {
+          // Show loading screen while settings are being loaded
+          if (settings.isLoading) {
+            return const MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          }
+
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Hadiya Heritage - Visit Hadiya',
+            
+            // Apply theme based on settings
             theme: buildAppTheme(Brightness.light),
             darkTheme: buildAppTheme(Brightness.dark),
-            locale: DevicePreview.locale(context) ?? localeProvider.locale,
+            themeMode: settings.flutterThemeMode,
+            
+            // Apply language based on settings
+            locale: DevicePreview.locale(context) ?? settings.locale,
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               DefaultWidgetsLocalizations.delegate,
               DefaultMaterialLocalizations.delegate,
             ],
-            builder: DevicePreview.appBuilder,
+            
+            builder: (context, widget) {
+              // Apply text scale factor based on settings
+              Widget app = MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                  textScaleFactor: settings.textScaleFactor,
+                ),
+                child: widget!,
+              );
+              
+              // Apply DevicePreview wrapper
+              return DevicePreview.appBuilder(context, app);
+            },
+            
             routes: {
               '/home': (_) => const FestivalHomeScreen(),
               '/history': (_) => const HistoryTimelineScreen(),
@@ -63,3 +93,6 @@ class HadiyaHeritageApp extends StatelessWidget {
     );
   }
 }
+
+
+
