@@ -177,7 +177,7 @@ class AppLocalizations {
       'hdy': 'Hadiyigna information placeholder. TODO: verify and enrich.',
       'am': 'ሐዲያኛ የሐዲያ ሕዝብ ዋና ቋንቋ ነው። የተለያዩ ዝርያዎች አሉት።',
       'en':
-          'Hadiyigna, a Cushitic language, is central to Hadiya identity. Dialects vary across the region.',
+          'Hadiyigna is the native language of the Hadiya people, belonging to the Cushitic branch of the Afroasiatic family. It is a symbol of unity and identity, spoken by hundreds of thousands in southern Ethiopia. The language features several dialects, reflecting the diversity within Hadiya communities. Oral tradition, poetry, and storytelling are vital in preserving history and values, with elders passing down wisdom through generations. Efforts to document and teach Hadiyigna in schools are ongoing, helping to safeguard this rich linguistic heritage.',
     },
     'culture_music_title': {
       'hdy': 'Music & Dance',
@@ -188,14 +188,14 @@ class AppLocalizations {
       'hdy': 'Music & dance placeholder. TODO: verify.',
       'am': 'ሙዚቃና ዳንስ በሕይወት ውስጥ አስፈላጊ ሚና አላቸው።',
       'en':
-          'Music and dance express joy, sorrow, and history in Hadiya culture.',
+          'Music and dance are the heartbeat of Hadiya celebrations, marking weddings, harvests, and religious festivals. Traditional instruments like the masenqo (single-stringed fiddle), drums, and flutes accompany vibrant dances, each with unique steps and meanings. Songs recount historical events, praise ancestors, and express emotions from joy to sorrow. Dance circles foster community spirit, with participants wearing colorful attire and moving in harmony. These art forms are not only entertainment but also a living archive of Hadiya history and values.',
     },
     'culture_customs_title': {'hdy': 'Customs', 'am': 'ልማዶች', 'en': 'Customs'},
     'culture_customs_body': {
       'hdy': 'Customs placeholder. TODO: verify.',
       'am': 'ልማዶች የዕለት ተዕለት ተግባራትን ይመራሉ።',
       'en':
-          'Customs guide daily life, respect for elders, and community harmony.',
+          'Hadiya customs emphasize respect for elders, hospitality, and communal support. Ceremonies such as weddings and funerals are elaborate, involving extended families and neighbors. The practice of sharing food, especially during holidays, strengthens bonds. Elders mediate disputes and guide important decisions, ensuring harmony. Rituals mark life stages, from birth to adulthood, with blessings and symbolic gifts. These customs foster a sense of belonging and continuity, connecting individuals to their heritage and community.',
     },
     'culture_social_title': {
       'hdy': 'Social Structure',
@@ -206,7 +206,7 @@ class AppLocalizations {
       'hdy': 'Social structure placeholder. TODO: verify.',
       'am': 'ማህበራዊ መዋቅር በጎሳ እና በሴራ ስርዓት ይመራል።',
       'en':
-          'Society is organized around clans (gosa) and the Sera system of roles and responsibilities.',
+          'Hadiya society is structured around clans (gosa), each tracing lineage to a common ancestor. The Sera system governs roles, responsibilities, and conflict resolution, promoting fairness and cooperation. Leadership is often vested in elders and respected figures, who oversee rituals and community affairs. Social gatherings, mutual aid, and collective farming are common, reflecting the value placed on unity and shared purpose. This structure has helped the Hadiya people maintain resilience and identity through changing times.',
     },
     // Icons (Leaders, Warriors, Cultural Icons)
     'icons_title': {
@@ -274,6 +274,7 @@ class AppLocalizations {
       'am': 'የ20ኛው ክ/ዘመን መሪ',
       'en': '20th Century Leader',
     },
+
     'icon_warrior_19c': {
       'hdy': '19th Century Warrior',
       'am': 'የ19ኛው ክ/ዘመን ተዋጊ',

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../controllers/culture_controller.dart';
 import '../../l10n/app_localizations.dart';
-import 'culture_topic_detail_screen.dart';
 
 class CultureScreen extends StatelessWidget {
   const CultureScreen({super.key});
@@ -47,44 +46,29 @@ class _CultureView extends StatelessWidget {
         itemBuilder: (context, index) {
           final t = topics[index];
           return Card(
-            elevation: 0,
-            child: InkWell(
+            elevation: 1,
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => CultureTopicDetailScreen(
-                    title: loc.t(t.titleKey),
-                    body: loc.t(t.bodyKey),
-                  ),
-                ),
+            ),
+            child: ExpansionTile(
+              tilePadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            loc.t(t.titleKey),
-                            style: Theme.of(context).textTheme.titleLarge
-                                ?.copyWith(fontWeight: FontWeight.w800),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            loc.t(t.bodyKey),
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Icon(Icons.chevron_right_rounded, color: cs.primary),
-                  ],
-                ),
+              childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              title: Text(
+                loc.t(t.titleKey),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
               ),
+              trailing: Icon(Icons.expand_more_rounded, color: cs.primary),
+              children: [
+                Text(
+                  loc.t(t.bodyKey),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
             ),
           );
         },
