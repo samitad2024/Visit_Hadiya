@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../controllers/category_controller.dart';
 import '../../l10n/app_localizations.dart';
+import '../widgets/auto_carousel.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -59,58 +60,20 @@ class _HomeView extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
         children: [
-          // Header banner
-          ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: Stack(
-              children: [
-                Container(
-                  height: 220,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFB2EBF2),
-                        Color(0xFF80DEEA),
-                        Color(0xFF4DD0E1),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 24,
-                  top: 32,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Explore Hadiya',
-                        style: Theme.of(context).textTheme.headlineMedium
-                            ?.copyWith(
-                              color: Colors.black87,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Discover historical sites, culture, icons, and more.',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge?.copyWith(color: Colors.black54),
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Navigation removed - see Historical Sites category below
-                        },
-                        child: const Text('Historical Sites'),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          // Auto-scrolling image carousel
+          const AutoCarousel(
+            images: [
+              'assets/images/hadiy_nefera.png',
+              'assets/images/hadiy_nafara_two.png',
+              'assets/images/hadiya_women.png',
+              'assets/images/tiya_stones.jpg',
+              'assets/images/lake_wonchi.jpg',
+              'assets/images/chebera_churchura.jpg',
+            ],
+            height: 220,
+            autoScrollDuration: Duration(seconds: 3),
+            transitionDuration: Duration(milliseconds: 600),
+            borderRadius: 24.0,
           ),
           const SizedBox(height: 20),
           ...items.map(
