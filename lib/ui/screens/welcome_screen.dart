@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../core/theme/app_colors.dart';
 import 'home_screen.dart';
 import '../../core/theme/spacing.dart';
-import '../../core/providers/locale_provider.dart';
+import '../../core/providers/app_settings_provider.dart';
 import '../../l10n/app_localizations.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -21,15 +21,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
-    final provider = context.watch<LocaleProvider>();
-    _selectedCode ??= provider.locale.languageCode;
+    final settings = context.watch<AppSettingsProvider>();
+    _selectedCode ??= settings.languageCode;
 
     return Scaffold(
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             final isWide = constraints.maxWidth > 700;
-            final content = _buildContent(context, loc, provider, isWide);
+            final content = _buildContent(context, loc, settings, isWide);
             if (isWide) {
               return Center(
                 child: ConstrainedBox(
@@ -48,7 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget _buildContent(
     BuildContext context,
     AppLocalizations loc,
-    LocaleProvider provider,
+    AppSettingsProvider settings,
     bool isWide,
   ) {
     return SingleChildScrollView(
@@ -66,7 +66,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 children: [
                   Container(color: const Color(0xFF121416)),
                   SvgPicture.asset(
-                    'assets/images/welcome_jar.svg',
+                    'images/hadiy_nefera.png',
                     fit: BoxFit.cover,
                   ),
                   Positioned(
@@ -108,12 +108,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 12),
-          ...provider.supported.map(
-            (opt) => _LanguageTile(
-              title: opt.name,
-              isSelected: _selectedCode == opt.code,
-              onTap: () => setState(() => _selectedCode = opt.code),
-            ),
+          _LanguageTile(
+            title: 'English',
+            isSelected: _selectedCode == 'en',
+            onTap: () => setState(() => _selectedCode = 'en'),
+          ),
+          _LanguageTile(
+            title: 'አማርኛ (Amharic)',
+            isSelected: _selectedCode == 'am',
+            onTap: () => setState(() => _selectedCode = 'am'),
+          ),
+          _LanguageTile(
+            title: 'Hadiyigna',
+            isSelected: _selectedCode == 'hdy',
+            onTap: () => setState(() => _selectedCode = 'hdy'),
           ),
           const SizedBox(height: 24),
           SizedBox(
@@ -123,7 +131,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ? null
                   : () {
                       if (_selectedCode != null) {
-                        provider.setLocale(_selectedCode!);
+                        settings.setLanguage(_selectedCode!);
                       }
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (_) => const HomeScreen()),

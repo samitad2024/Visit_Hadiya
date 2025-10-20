@@ -449,7 +449,9 @@ class _SettingsView extends StatelessWidget {
   }
 
   void _showClearCacheDialog(
-      BuildContext context, AppSettingsProvider settings) {
+    BuildContext context,
+    AppSettingsProvider settings,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -469,8 +471,7 @@ class _SettingsView extends StatelessWidget {
                 if (context.mounted) {
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Cache cleared successfully')),
+                    const SnackBar(content: Text('Cache cleared successfully')),
                   );
                 }
               } catch (e) {

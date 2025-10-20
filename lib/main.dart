@@ -37,23 +37,19 @@ class HadiyaHeritageApp extends StatelessWidget {
           if (settings.isLoading) {
             return const MaterialApp(
               debugShowCheckedModeBanner: false,
-              home: Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
+              home: Scaffold(body: Center(child: CircularProgressIndicator())),
             );
           }
 
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Hadiya Heritage - Visit Hadiya',
-            
+
             // Apply theme based on settings
             theme: buildAppTheme(Brightness.light),
             darkTheme: buildAppTheme(Brightness.dark),
             themeMode: settings.flutterThemeMode,
-            
+
             // Apply language based on settings
             locale: DevicePreview.locale(context) ?? settings.locale,
             supportedLocales: AppLocalizations.supportedLocales,
@@ -62,20 +58,20 @@ class HadiyaHeritageApp extends StatelessWidget {
               DefaultWidgetsLocalizations.delegate,
               DefaultMaterialLocalizations.delegate,
             ],
-            
+
             builder: (context, widget) {
               // Apply text scale factor based on settings
               Widget app = MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                  textScaleFactor: settings.textScaleFactor,
-                ),
+                data: MediaQuery.of(
+                  context,
+                ).copyWith(textScaleFactor: settings.textScaleFactor),
                 child: widget!,
               );
-              
+
               // Apply DevicePreview wrapper
               return DevicePreview.appBuilder(context, app);
             },
-            
+
             routes: {
               '/home': (_) => const FestivalHomeScreen(),
               '/history': (_) => const HistoryTimelineScreen(),
@@ -93,6 +89,3 @@ class HadiyaHeritageApp extends StatelessWidget {
     );
   }
 }
-
-
-

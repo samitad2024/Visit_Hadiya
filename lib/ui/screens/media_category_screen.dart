@@ -112,41 +112,7 @@ class _ItemCard extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     // Image
-                    item.thumbnailUrl.startsWith('http')
-                        ? CachedNetworkImage(
-                            imageUrl: item.thumbnailUrl,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Container(
-                              color: cs.surfaceVariant,
-                              child: Center(
-                                child: CircularProgressIndicator(
-                                  color: cs.primary,
-                                ),
-                              ),
-                            ),
-                            errorWidget: (context, url, error) => Container(
-                              color: cs.surfaceVariant,
-                              child: Icon(
-                                _getIconForType(item.type),
-                                size: 40,
-                                color: cs.onSurfaceVariant,
-                              ),
-                            ),
-                          )
-                        : Image.asset(
-                            item.thumbnailUrl,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: cs.surfaceVariant,
-                                child: Icon(
-                                  _getIconForType(item.type),
-                                  size: 40,
-                                  color: cs.onSurfaceVariant,
-                                ),
-                              );
-                            },
-                          ),
+                    _buildThumbnail(item, cs),
 
                     // Overlay icon
                     Center(
@@ -205,6 +171,73 @@ class _ItemCard extends StatelessWidget {
         return Icons.play_circle_filled;
       case MediaType.photo:
         return Icons.photo_library;
+    }
+  }
+
+  Widget _buildThumbnail(MediaItem item, ColorScheme cs) {
+    // If it's a video with mediaUrl (YouTube ID), use YouTube thumbnail
+    if (item.type == MediaType.video && item.mediaUrl != null && item.mediaUrl!.isNotEmpty) {
+      final youtubeId = item.mediaUrl!;
+      final youtubeThumbnail = 'https://img.youtube.com/vi/$youtubeId/maxresdefault.jpg';
+      
+      return CachedNetworkImage(
+        imageUrl: youtubeThumbnail,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => Container(
+          color: cs.surfaceVariant,
+          child: Center(
+            child: CircularProgressIndicator(
+              color: cs.primary,
+            ),
+          ),
+        ),
+        errorWidget: (context, url, error) {
+          // Fallback to regular thumbnail if YouTube thumbnail fails
+          return _buildRegularThumbnail(item, cs);
+        },
+      );
+    }
+    
+    return _buildRegularThumbnail(item, cs);
+  }
+
+  Widget _buildRegularThumbnail(MediaItem item, ColorScheme cs) {
+    if (item.thumbnailUrl.startsWith('http')) {
+      return CachedNetworkImage(
+        imageUrl: item.thumbnailUrl,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => Container(
+          color: cs.surfaceVariant,
+          child: Center(
+            child: CircularProgressIndicator(
+              color: cs.primary,
+            ),
+          ),
+        ),
+        errorWidget: (context, url, error) => Container(
+          color: cs.surfaceVariant,
+          child: Icon(
+            _getIconForType(item.type),
+            size: 40,
+            color: cs.onSurfaceVariant,
+          ),
+        ),
+      );
+    } else {
+      return Image.asset(
+        item.thumbnailUrl,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            color: cs.surfaceVariant,
+            child: Icon(
+              _getIconForType(item.type),
+              size: 40,
+              color: cs.onSurfaceVariant,
+            ),
+          );
+        },
+      );
     }
   }
 }

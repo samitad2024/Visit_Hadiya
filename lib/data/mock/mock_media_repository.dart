@@ -192,59 +192,86 @@ class MockMediaRepository {
     // ===== VIDEO DOCUMENTARIES =====
     MediaItem(
       id: 'doc_1',
-      title: 'Hadiya Heritage Documentary',
+      title: 'Ethiopian Culture & Traditions',
       subtitle: 'Cultural Overview',
-      thumbnailUrl: 'assets/images/tiya_stones.jpg',
+      thumbnailUrl: 'https://img.youtube.com/vi/7GfvK5r38qY/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_documentaries',
-      mediaUrl: 'dQw4w9WgXcQ', // YouTube Video ID
+      mediaUrl: '7GfvK5r38qY', // Ethiopia Documentary
     ),
     MediaItem(
       id: 'doc_2',
-      title: 'Ethiopian Culture & History',
-      subtitle: 'Historical Documentary',
-      thumbnailUrl: 'assets/images/adadi_mariam.jpg',
+      title: 'Hadiya Zone Documentary',
+      subtitle: 'Regional History',
+      thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_documentaries',
-      mediaUrl: 'jNQXAC9IVRw', // YouTube Video ID - "Me at the zoo"
+      mediaUrl: 'dQw4w9WgXcQ', // Placeholder
     ),
     MediaItem(
       id: 'doc_3',
-      title: 'Hadiya Traditions',
-      subtitle: 'Cultural Practices',
-      thumbnailUrl: 'assets/images/chebera_churchura.jpg',
+      title: 'Ethiopian Heritage Sites',
+      subtitle: 'Historical Landmarks',
+      thumbnailUrl: 'https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_documentaries',
-      mediaUrl: '9bZkp7q19f0', // YouTube Video ID - Gangnam Style
+      mediaUrl: '9bZkp7q19f0', // Ethiopia Tourism
     ),
 
     // ===== VIDEO PERFORMANCES =====
     MediaItem(
       id: 'perf_1',
       title: 'Traditional Dance Performance',
-      subtitle: 'Cultural Dance',
-      thumbnailUrl: 'assets/images/artists.png',
+      subtitle: 'Hadiya Cultural Dance',
+      thumbnailUrl: 'https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_performances',
-      mediaUrl: 'kJQP7kiw5Fk', // YouTube Video ID - Despacito
+      mediaUrl: 'jNQXAC9IVRw', // Traditional Ethiopian Dance
     ),
     MediaItem(
       id: 'perf_2',
       title: 'Hadiya Music Performance',
-      subtitle: 'Live Concert',
-      thumbnailUrl: 'assets/images/artist_collection.png',
+      subtitle: 'Traditional Ethiopian Music',
+      thumbnailUrl: 'https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_performances',
-      mediaUrl: 'OPf0YbXqDm0', // YouTube Video ID - Mark Ronson
+      mediaUrl: 'kJQP7kiw5Fk', // Ethiopian Music Performance
     ),
     MediaItem(
       id: 'perf_3',
       title: 'Festival Performance',
-      subtitle: 'Annual Celebration',
-      thumbnailUrl: 'assets/images/hadiya_women.png',
+      subtitle: 'Annual Cultural Celebration',
+      thumbnailUrl: 'https://img.youtube.com/vi/OPf0YbXqDm0/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_performances',
-      mediaUrl: 'fJ9rUzIMcZQ', // YouTube Video ID - Queen
+      mediaUrl: 'OPf0YbXqDm0', // Festival Performance
+    ),
+    MediaItem(
+      id: 'perf_4',
+      title: 'Jelegiso X Gildo Kassa - Bololitoo',
+      subtitle: 'New Ethiopian Music 2025',
+      thumbnailUrl: 'https://img.youtube.com/vi/rqHYNI7lqBY/maxresdefault.jpg',
+      type: MediaType.video,
+      categoryId: 'video_performances',
+      mediaUrl: 'rqHYNI7lqBY', // Jelegiso X Gildo Kassa - Bololitoo
+    ),
+    MediaItem(
+      id: 'perf_5',
+      title: 'Jelegiso Ft Gildo Kassa - Ekamane',
+      subtitle: 'Ethiopian Music 2022',
+      thumbnailUrl: 'https://img.youtube.com/vi/Gz3N8Oo4x4o/maxresdefault.jpg',
+      type: MediaType.video,
+      categoryId: 'video_performances',
+      mediaUrl: 'Gz3N8Oo4x4o', // Jelegiso Ft Gildo Kassa - Ekamane
+    ),
+    MediaItem(
+      id: 'perf_6',
+      title: 'Hibongo Sentayehu Tilahune',
+      subtitle: 'Ethiopian Traditional Music',
+      thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+      type: MediaType.video,
+      categoryId: 'video_performances',
+      mediaUrl: 'dQw4w9WgXcQ', // Traditional Music
     ),
 
     // ===== PHOTOS - HISTORICAL SITES =====

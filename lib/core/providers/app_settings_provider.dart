@@ -63,9 +63,10 @@ class AppSettingsProvider extends ChangeNotifier {
   Future<void> _loadSettings() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      
+
       final themeModeIndex = prefs.getInt(_keyThemeMode);
-      if (themeModeIndex != null && themeModeIndex < AppThemeMode.values.length) {
+      if (themeModeIndex != null &&
+          themeModeIndex < AppThemeMode.values.length) {
         _themeMode = AppThemeMode.values[themeModeIndex];
       }
 
@@ -91,7 +92,7 @@ class AppSettingsProvider extends ChangeNotifier {
   /// Set theme mode (light, dark, system)
   Future<void> setThemeMode(AppThemeMode mode) async {
     if (_themeMode == mode) return;
-    
+
     _themeMode = mode;
     notifyListeners();
 
@@ -106,7 +107,7 @@ class AppSettingsProvider extends ChangeNotifier {
   /// Set app language
   Future<void> setLanguage(String languageCode) async {
     if (_languageCode == languageCode) return;
-    
+
     _languageCode = languageCode;
     notifyListeners();
 
@@ -121,7 +122,7 @@ class AppSettingsProvider extends ChangeNotifier {
   /// Set text size
   Future<void> setTextSize(TextSizeMode size) async {
     if (_textSize == size) return;
-    
+
     _textSize = size;
     notifyListeners();
 
@@ -136,7 +137,7 @@ class AppSettingsProvider extends ChangeNotifier {
   /// Toggle offline mode
   Future<void> setOfflineMode(bool enabled) async {
     if (_offlineMode == enabled) return;
-    
+
     _offlineMode = enabled;
     notifyListeners();
 
@@ -151,7 +152,7 @@ class AppSettingsProvider extends ChangeNotifier {
   /// Toggle notifications
   Future<void> setNotifications(bool enabled) async {
     if (_notificationsEnabled == enabled) return;
-    
+
     _notificationsEnabled = enabled;
     notifyListeners();
 
@@ -169,10 +170,10 @@ class AppSettingsProvider extends ChangeNotifier {
       // Clear image cache
       imageCache.clear();
       imageCache.clearLiveImages();
-      
+
       // You can add more cache clearing logic here
       // For example: clearing downloaded files, cached API responses, etc.
-      
+
       debugPrint('Cache cleared successfully');
     } catch (e) {
       debugPrint('Error clearing cache: $e');
