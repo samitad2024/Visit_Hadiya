@@ -36,7 +36,11 @@ class _HomeView extends StatelessWidget {
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: 0,
-        onDestinationSelected: (i) {},
+        onDestinationSelected: (i) {
+          if (i == 1) Navigator.of(context).pushNamed('/culture');
+          if (i == 2) Navigator.of(context).pushNamed('/favorites');
+          if (i == 3) Navigator.of(context).pushNamed('/settings');
+        },
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
