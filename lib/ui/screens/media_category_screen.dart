@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../controllers/media_controller.dart';
@@ -8,6 +7,9 @@ import '../../l10n/app_localizations.dart';
 import 'audio_player_screen.dart';
 import 'video_player_screen.dart';
 import 'photo_viewer_screen.dart';
+import 'package:provider/provider.dart';
+import '../../services/favorites_service.dart';
+import '../../models/favorite.dart';
 
 class MediaCategoryScreen extends StatelessWidget {
   const MediaCategoryScreen({super.key});
@@ -93,6 +95,8 @@ class _ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final favs = context.watch<FavoritesService>();
+    final isFav = favs.isFavorite(item.id);
     return InkWell(
       onTap: () => _openMedia(context),
       borderRadius: BorderRadius.circular(16),
@@ -103,7 +107,7 @@ class _ItemCard extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: cs.surfaceVariant,
+                color: cs.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: ClipRRect(
@@ -126,6 +130,50 @@ class _ItemCard extends StatelessWidget {
                           _getPlayIconForType(item.type),
                           color: Colors.white,
                           size: 32,
+                        ),
+                      ),
+                    ),
+
+                    // Favorite button
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: InkWell(
+                        onTap: () async {
+                          await favs.toggleFavorite(
+                            Favorite(
+                              id: item.id,
+                              type: FavoriteType.media,
+                              title: item.title,
+                              subtitle: item.subtitle,
+                              thumbnailUrl: item.thumbnailUrl,
+                              addedDate: DateTime.now(),
+                            ),
+                          );
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                behavior: SnackBarBehavior.floating,
+                                content: Text(
+                                  isFav
+                                      ? 'Removed from favorites'
+                                      : 'Added to favorites',
+                                ),
+                                duration: const Duration(seconds: 1),
+                              ),
+                            );
+                          }
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.35),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            isFav ? Icons.favorite : Icons.favorite_border,
+                            color: isFav ? Colors.redAccent : Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -176,20 +224,19 @@ class _ItemCard extends StatelessWidget {
 
   Widget _buildThumbnail(MediaItem item, ColorScheme cs) {
     // If it's a video with mediaUrl (YouTube ID), use YouTube thumbnail
-    if (item.type == MediaType.video && item.mediaUrl != null && item.mediaUrl!.isNotEmpty) {
+    if (item.type == MediaType.video &&
+        item.mediaUrl != null &&
+        item.mediaUrl!.isNotEmpty) {
       final youtubeId = item.mediaUrl!;
-      final youtubeThumbnail = 'https://img.youtube.com/vi/$youtubeId/maxresdefault.jpg';
-      
+      final youtubeThumbnail =
+          'https://img.youtube.com/vi/$youtubeId/maxresdefault.jpg';
+
       return CachedNetworkImage(
         imageUrl: youtubeThumbnail,
         fit: BoxFit.cover,
         placeholder: (context, url) => Container(
-          color: cs.surfaceVariant,
-          child: Center(
-            child: CircularProgressIndicator(
-              color: cs.primary,
-            ),
-          ),
+          color: cs.surfaceContainerHighest,
+          child: Center(child: CircularProgressIndicator(color: cs.primary)),
         ),
         errorWidget: (context, url, error) {
           // Fallback to regular thumbnail if YouTube thumbnail fails
@@ -197,7 +244,7 @@ class _ItemCard extends StatelessWidget {
         },
       );
     }
-    
+
     return _buildRegularThumbnail(item, cs);
   }
 
@@ -207,15 +254,11 @@ class _ItemCard extends StatelessWidget {
         imageUrl: item.thumbnailUrl,
         fit: BoxFit.cover,
         placeholder: (context, url) => Container(
-          color: cs.surfaceVariant,
-          child: Center(
-            child: CircularProgressIndicator(
-              color: cs.primary,
-            ),
-          ),
+          color: cs.surfaceContainerHighest,
+          child: Center(child: CircularProgressIndicator(color: cs.primary)),
         ),
         errorWidget: (context, url, error) => Container(
-          color: cs.surfaceVariant,
+          color: cs.surfaceContainerHighest,
           child: Icon(
             _getIconForType(item.type),
             size: 40,
@@ -229,7 +272,7 @@ class _ItemCard extends StatelessWidget {
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
           return Container(
-            color: cs.surfaceVariant,
+            color: cs.surfaceContainerHighest,
             child: Icon(
               _getIconForType(item.type),
               size: 40,

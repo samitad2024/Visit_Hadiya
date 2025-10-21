@@ -40,25 +40,56 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   void _initializePlayer() {
     final videoId = _currentItem.mediaUrl ?? '';
 
-    _controller =
-        YoutubePlayerController(
-          initialVideoId: videoId,
-          flags: const YoutubePlayerFlags(
-            autoPlay: true,
-            mute: false,
-            enableCaption: true,
-            controlsVisibleAtStart: true,
-            hideControls: false,
-          ),
-        )..addListener(() {
-          if (_isPlayerReady &&
-              mounted &&
-              _controller.value.playerState == PlayerState.ended) {
-            _playNext();
-          }
-        });
+    // Ensure we have a valid video ID
+    if (videoId.isEmpty) {
+      debugPrint('Error: Empty video ID');
+      return;
+    }
 
-    _isPlayerReady = true;
+    debugPrint('Initializing YouTube player with video ID: $videoId');
+
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId,
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+        enableCaption: false,
+        controlsVisibleAtStart: true,
+        hideControls: false,
+        loop: false,
+        isLive: false,
+        forceHD: false,
+        disableDragSeek: false,
+        showLiveFullscreenButton: true,
+        useHybridComposition: true, // Important for Android
+      ),
+    )..addListener(_playerListener);
+  }
+
+  void _playerListener() {
+    if (!mounted) return;
+
+    final state = _controller.value.playerState;
+
+    if (state == PlayerState.ended && _isPlayerReady) {
+      _playNext();
+    }
+
+    // Log player state for debugging
+    if (state == PlayerState.buffering) {
+      debugPrint('Player is buffering...');
+    } else if (state == PlayerState.playing) {
+      debugPrint('Player is playing');
+      if (!_isPlayerReady) {
+        setState(() {
+          _isPlayerReady = true;
+        });
+      }
+    } else if (state == PlayerState.paused) {
+      debugPrint('Player is paused');
+    } else if (state == PlayerState.cued) {
+      debugPrint('Player is cued');
+    }
   }
 
   void _playNext() {
@@ -68,7 +99,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         _currentIndex++;
         _currentItem = widget.playlist![_currentIndex];
       });
-      _controller.load(_currentItem.mediaUrl ?? '');
+      final videoId = _currentItem.mediaUrl ?? '';
+      debugPrint('Loading next video: $videoId');
+      _controller.load(videoId);
+      _controller.play();
     }
   }
 
@@ -78,12 +112,16 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         _currentIndex--;
         _currentItem = widget.playlist![_currentIndex];
       });
-      _controller.load(_currentItem.mediaUrl ?? '');
+      final videoId = _currentItem.mediaUrl ?? '';
+      debugPrint('Loading previous video: $videoId');
+      _controller.load(videoId);
+      _controller.play();
     }
   }
 
   @override
   void dispose() {
+    _controller.removeListener(_playerListener);
     _controller.dispose();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.dispose();
@@ -106,10 +144,21 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           bufferedColor: cs.primaryContainer,
         ),
         onReady: () {
+          debugPrint('YouTube Player is ready');
           setState(() {
             _isPlayerReady = true;
           });
         },
+        onEnded: (metaData) {
+          debugPrint('Video ended');
+          _playNext();
+        },
+        bottomActions: [
+          CurrentPosition(),
+          ProgressBar(isExpanded: true),
+          RemainingDuration(),
+          const PlaybackSpeedButton(),
+        ],
         topActions: [
           const SizedBox(width: 8),
           Expanded(
@@ -306,7 +355,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                       _currentIndex = index;
                                       _currentItem = item;
                                     });
-                                    _controller.load(item.mediaUrl ?? '');
+                                    final videoId = item.mediaUrl ?? '';
+                                    debugPrint(
+                                      'Playing video from playlist: $videoId',
+                                    );
+                                    _controller.load(videoId);
+                                    _controller.play();
                                   }
                                 },
                               ),

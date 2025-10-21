@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/theme/app_colors.dart';
-import 'home_screen.dart';
 import '../../core/theme/spacing.dart';
 import '../../core/providers/app_settings_provider.dart';
 import '../../l10n/app_localizations.dart';
@@ -133,9 +132,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       if (_selectedCode != null) {
                         settings.setLanguage(_selectedCode!);
                       }
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (_) => const HomeScreen()),
-                      );
+                      Navigator.of(context).pushReplacementNamed('/home');
                     },
               child: Text(loc.t('continue')),
             ),

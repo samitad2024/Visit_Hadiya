@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../../controllers/media_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/media_item.dart';
+import '../widgets/app_bottom_navigation.dart';
 
 class MediaGalleryScreen extends StatelessWidget {
   const MediaGalleryScreen({super.key});
@@ -59,32 +60,7 @@ class _MediaGalleryView extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: 1,
-        onDestinationSelected: (i) {
-          if (i == 0) Navigator.of(context).popUntil((r) => r.isFirst);
-          if (i == 3) Navigator.of(context).pushNamed('/settings');
-        },
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home_rounded),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.explore_outlined),
-            label: 'Explore',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.bookmark_border_rounded),
-            label: 'Saved',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            label: 'Settings',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const AppBottomNavigation(selectedIndex: 1),
     );
   }
 }
@@ -217,7 +193,7 @@ class _CategoryCard extends StatelessWidget {
             Container(
               height: 160,
               decoration: BoxDecoration(
-                color: cs.surfaceVariant,
+                color: cs.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: ClipRRect(
@@ -232,7 +208,7 @@ class _CategoryCard extends StatelessWidget {
                               imageUrl: category.imageUrl!,
                               fit: BoxFit.cover,
                               placeholder: (context, url) => Container(
-                                color: cs.surfaceVariant,
+                                color: cs.surfaceContainerHighest,
                                 child: Center(
                                   child: CircularProgressIndicator(
                                     color: cs.primary,
@@ -240,7 +216,7 @@ class _CategoryCard extends StatelessWidget {
                                 ),
                               ),
                               errorWidget: (context, url, error) => Container(
-                                color: cs.surfaceVariant,
+                                color: cs.surfaceContainerHighest,
                                 child: Icon(
                                   switch (category.type) {
                                     MediaType.audio => Icons.headphones,
@@ -258,7 +234,7 @@ class _CategoryCard extends StatelessWidget {
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
-                                  color: cs.surfaceVariant,
+                                  color: cs.surfaceContainerHighest,
                                   child: Icon(
                                     switch (category.type) {
                                       MediaType.audio => Icons.headphones,

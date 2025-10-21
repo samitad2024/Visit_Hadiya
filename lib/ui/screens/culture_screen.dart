@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../controllers/culture_controller.dart';
 import '../../l10n/app_localizations.dart';
+import '../widgets/app_bottom_navigation.dart';
 
 class CultureScreen extends StatelessWidget {
   const CultureScreen({super.key});
@@ -26,21 +27,7 @@ class _CultureView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(loc.t('hadiya_culture_title'))),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: 1,
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.explore), label: 'Explore'),
-          NavigationDestination(
-            icon: Icon(Icons.bookmark_border),
-            label: 'Saved',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            label: 'Settings',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const AppBottomNavigation(selectedIndex: 1),
       body: ListView.separated(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         itemBuilder: (context, index) {

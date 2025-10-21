@@ -221,57 +221,30 @@ class MockMediaRepository {
     // ===== VIDEO PERFORMANCES =====
     MediaItem(
       id: 'perf_1',
-      title: 'Traditional Dance Performance',
-      subtitle: 'Hadiya Cultural Dance',
-      thumbnailUrl: 'https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg',
+      title: 'Hinbongo - Ethiopian Music',
+      subtitle: 'Hadiya Traditional Music',
+      thumbnailUrl: 'https://img.youtube.com/vi/x2JTDCM_ywM/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_performances',
-      mediaUrl: 'jNQXAC9IVRw', // Traditional Ethiopian Dance
+      mediaUrl: 'x2JTDCM_ywM', // Hinbongo
     ),
     MediaItem(
       id: 'perf_2',
-      title: 'Hadiya Music Performance',
-      subtitle: 'Traditional Ethiopian Music',
-      thumbnailUrl: 'https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg',
+      title: 'Workiaferahu Kebede',
+      subtitle: 'Hadiya Music Performance',
+      thumbnailUrl: 'https://img.youtube.com/vi/q9rKenMLEP4/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_performances',
-      mediaUrl: 'kJQP7kiw5Fk', // Ethiopian Music Performance
+      mediaUrl: 'q9rKenMLEP4', // Workiaferahu Kebede
     ),
     MediaItem(
       id: 'perf_3',
-      title: 'Festival Performance',
-      subtitle: 'Annual Cultural Celebration',
-      thumbnailUrl: 'https://img.youtube.com/vi/OPf0YbXqDm0/maxresdefault.jpg',
+      title: 'Jelegiso X Gildo Kassa',
+      subtitle: 'Hadiya Cultural Music',
+      thumbnailUrl: 'https://img.youtube.com/vi/XlA9avJmyjQ/maxresdefault.jpg',
       type: MediaType.video,
       categoryId: 'video_performances',
-      mediaUrl: 'OPf0YbXqDm0', // Festival Performance
-    ),
-    MediaItem(
-      id: 'perf_4',
-      title: 'Jelegiso X Gildo Kassa - Bololitoo',
-      subtitle: 'New Ethiopian Music 2025',
-      thumbnailUrl: 'https://img.youtube.com/vi/rqHYNI7lqBY/maxresdefault.jpg',
-      type: MediaType.video,
-      categoryId: 'video_performances',
-      mediaUrl: 'rqHYNI7lqBY', // Jelegiso X Gildo Kassa - Bololitoo
-    ),
-    MediaItem(
-      id: 'perf_5',
-      title: 'Jelegiso Ft Gildo Kassa - Ekamane',
-      subtitle: 'Ethiopian Music 2022',
-      thumbnailUrl: 'https://img.youtube.com/vi/Gz3N8Oo4x4o/maxresdefault.jpg',
-      type: MediaType.video,
-      categoryId: 'video_performances',
-      mediaUrl: 'Gz3N8Oo4x4o', // Jelegiso Ft Gildo Kassa - Ekamane
-    ),
-    MediaItem(
-      id: 'perf_6',
-      title: 'Hibongo Sentayehu Tilahune',
-      subtitle: 'Ethiopian Traditional Music',
-      thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
-      type: MediaType.video,
-      categoryId: 'video_performances',
-      mediaUrl: 'dQw4w9WgXcQ', // Traditional Music
+      mediaUrl: 'XlA9avJmyjQ', // Jelegiso X Gildo Kassa
     ),
 
     // ===== PHOTOS - HISTORICAL SITES =====

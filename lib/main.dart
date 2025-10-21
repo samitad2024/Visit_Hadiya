@@ -7,6 +7,7 @@ import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'ui/screens/welcome_screen.dart';
 import 'ui/screens/festival_home_screen.dart';
+import 'ui/screens/home_screen.dart';
 import 'ui/screens/history_timeline_screen.dart';
 import 'ui/screens/culture_screen.dart';
 import 'ui/screens/icons_screen.dart';
@@ -14,6 +15,8 @@ import 'ui/screens/calendar_screen.dart';
 import 'ui/screens/settings_screen.dart';
 import 'ui/screens/media_gallery_screen.dart';
 import 'ui/screens/media_category_screen.dart';
+import 'ui/screens/favorites_unified_screen.dart';
+import 'services/favorites_service.dart';
 
 void main() {
   runApp(
@@ -29,8 +32,13 @@ class HadiyaHeritageApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AppSettingsProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
+        ChangeNotifierProvider(
+          create: (_) => FavoritesService()..loadFavorites(),
+        ),
+      ],
       child: Consumer<AppSettingsProvider>(
         builder: (context, settings, __) {
           // Show loading screen while settings are being loaded
@@ -62,9 +70,9 @@ class HadiyaHeritageApp extends StatelessWidget {
             builder: (context, widget) {
               // Apply text scale factor based on settings
               Widget app = MediaQuery(
-                data: MediaQuery.of(
-                  context,
-                ).copyWith(textScaleFactor: settings.textScaleFactor),
+                data: MediaQuery.of(context).copyWith(
+                  textScaler: TextScaler.linear(settings.textScaleFactor),
+                ),
                 child: widget!,
               );
 
@@ -73,7 +81,9 @@ class HadiyaHeritageApp extends StatelessWidget {
             },
 
             routes: {
-              '/home': (_) => const FestivalHomeScreen(),
+              '/home': (_) => const HomeScreen(),
+              '/festival': (_) => const FestivalHomeScreen(),
+              '/favorites': (_) => const FavoritesUnifiedScreen(),
               '/history': (_) => const HistoryTimelineScreen(),
               '/culture': (_) => const CultureScreen(),
               '/icons': (_) => const IconsScreen(),

@@ -6,6 +6,7 @@ import '../../l10n/app_localizations.dart';
 import '../../models/person_icon.dart';
 import '../widgets/asset_image.dart';
 import 'icon_detail_screen.dart';
+import '../widgets/app_bottom_navigation.dart';
 
 class IconsScreen extends StatelessWidget {
   const IconsScreen({super.key});
@@ -27,21 +28,7 @@ class _IconsView extends StatelessWidget {
     final controller = context.watch<IconsController>();
     return Scaffold(
       appBar: AppBar(title: Text(loc.t('icons_title'))),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: 1,
-        destinations: [
-          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.explore), label: 'Explore'),
-          NavigationDestination(
-            icon: Icon(Icons.bookmark_border),
-            label: 'Saved',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            label: 'Settings',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const AppBottomNavigation(selectedIndex: 1),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
         children: [

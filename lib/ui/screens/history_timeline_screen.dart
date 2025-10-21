@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/asset_image.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/history_controller.dart';
 import '../../l10n/app_localizations.dart';
+import '../../data/mock/mock_historical_sites_repository.dart';
+import '../../models/historical_site.dart';
 
 class HistoryTimelineScreen extends StatelessWidget {
   const HistoryTimelineScreen({super.key});
@@ -25,6 +28,11 @@ class _HistoryView extends StatelessWidget {
     final loc = AppLocalizations.of(context);
     final events = context.watch<HistoryController>().events;
     final cs = Theme.of(context).colorScheme;
+    // Build a lookup of known visiting sites by id so we can attach map actions
+    final sites = const MockHistoricalSitesRepository().fetchSites();
+    final Map<String, HistoricalSite> siteById = {
+      for (final s in sites) s.id: s,
+    };
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -77,9 +85,27 @@ class _HistoryView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           child: AspectRatio(
                             aspectRatio: 16 / 9,
-                            child: AssetImageOrSvg(
-                              e.imageAsset,
-                              fit: BoxFit.cover,
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: [
+                                AssetImageOrSvg(
+                                  e.imageAsset,
+                                  fit: BoxFit.cover,
+                                ),
+                                if (siteById[e.id]?.latitude != null &&
+                                    siteById[e.id]?.longitude != null)
+                                  Positioned(
+                                    bottom: 8,
+                                    right: 8,
+                                    child: _MapQuickButton(
+                                      tooltip: 'Open in Google Maps',
+                                      onTap: () {
+                                        final s = siteById[e.id]!;
+                                        _openMap(s.latitude!, s.longitude!);
+                                      },
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
                         ),
@@ -102,6 +128,42 @@ class _HistoryView extends StatelessWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+Future<void> _openMap(double lat, double lng) async {
+  final url = Uri.parse(
+    'https://www.google.com/maps/search/?api=1&query=$lat,$lng',
+  );
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url, mode: LaunchMode.externalApplication);
+  }
+}
+
+class _MapQuickButton extends StatelessWidget {
+  const _MapQuickButton({required this.onTap, this.tooltip});
+  final VoidCallback onTap;
+  final String? tooltip;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Tooltip(
+      message: tooltip ?? 'Map',
+      child: Material(
+        color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.9),
+        shape: const CircleBorder(),
+        elevation: 2,
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Icon(Icons.map, color: theme.colorScheme.primary),
+          ),
+        ),
       ),
     );
   }

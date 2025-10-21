@@ -10,6 +10,7 @@ import 'festival_list_screen.dart';
 import 'festival_detail_screen.dart';
 import 'calendar_screen.dart';
 import '../screens/favorites_screen.dart';
+import '../widgets/app_bottom_navigation.dart';
 
 /// Main home/dashboard screen
 class FestivalHomeScreen extends StatefulWidget {
@@ -47,35 +48,11 @@ class _FestivalHomeScreenState extends State<FestivalHomeScreen> {
       ],
       child: Scaffold(
         body: _getSelectedScreen(),
-        bottomNavigationBar: NavigationBar(
+        bottomNavigationBar: AppBottomNavigation(
           selectedIndex: _selectedIndex,
-          onDestinationSelected: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
+          onTap: (index) {
+            setState(() => _selectedIndex = index);
           },
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.calendar_today_outlined),
-              selectedIcon: Icon(Icons.calendar_today),
-              label: 'Calendar',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.explore_outlined),
-              selectedIcon: Icon(Icons.explore),
-              label: 'Explore',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.favorite_border),
-              selectedIcon: Icon(Icons.favorite),
-              label: 'Favorites',
-            ),
-          ],
         ),
       ),
     );

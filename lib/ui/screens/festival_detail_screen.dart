@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../models/festival_event.dart';
 import '../../controllers/favorites_controller.dart';
+import '../../services/favorites_service.dart';
+import '../../models/favorite.dart';
 import '../widgets/festival_card.dart';
 
 /// Detailed view of a festival event
@@ -54,22 +56,56 @@ class _FestivalDetailScreenState extends State<FestivalDetailScreen> {
                 background: _buildImageCarousel(),
               ),
               actions: [
-                Consumer<FavoritesController>(
-                  builder: (context, favController, _) {
+                Consumer2<FavoritesController, FavoritesService>(
+                  builder: (context, favController, favs, _) {
                     final isFavorite = favController.isFavorite(
                       widget.festival.id,
                     );
 
-                    return IconButton(
-                      onPressed: () =>
-                          favController.toggleFavorite(widget.festival.id),
-                      icon: Icon(
-                        isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorite ? Colors.red : Colors.white,
-                      ),
-                      style: IconButton.styleFrom(
-                        backgroundColor: Colors.black.withValues(alpha: 0.3),
-                      ),
+                    return Row(
+                      children: [
+                        IconButton(
+                          onPressed: () =>
+                              favController.toggleFavorite(widget.festival.id),
+                          icon: Icon(
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
+                            color: isFavorite ? Colors.red : Colors.white,
+                          ),
+                          style: IconButton.styleFrom(
+                            backgroundColor: Colors.black.withValues(
+                              alpha: 0.3,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        IconButton(
+                          onPressed: () => favs.toggleFavorite(
+                            Favorite(
+                              id: 'festival:${widget.festival.id}',
+                              type: FavoriteType.festival,
+                              title: widget.festival.titleKey,
+                              subtitle: widget.festival.location,
+                              thumbnailUrl:
+                                  (widget.festival.thumbnailUrl ??
+                                  (widget.festival.imageUrls.isNotEmpty
+                                      ? widget.festival.imageUrls.first
+                                      : '')),
+                              addedDate: DateTime.now(),
+                            ),
+                          ),
+                          icon: Icon(
+                            favs.isFavorite('festival:${widget.festival.id}')
+                                ? Icons.bookmark
+                                : Icons.bookmark_border,
+                            color: Colors.white,
+                          ),
+                          style: IconButton.styleFrom(
+                            backgroundColor: Colors.black.withValues(
+                              alpha: 0.3,
+                            ),
+                          ),
+                        ),
+                      ],
                     );
                   },
                 ),
