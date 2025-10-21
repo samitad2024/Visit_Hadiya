@@ -14,10 +14,10 @@ class AppBottomNavigation extends StatelessWidget {
 
   void _defaultNavigate(BuildContext context, int index) {
     // Map indices to named routes used in the app.
-    // 0: Home, 1: Explore/Culture, 2: Favorites, 3: Settings
+    // 0: Home, 1: Explore/Chat, 2: Favorites, 3: Settings
     final route = switch (index) {
       0 => '/home',
-      1 => '/culture',
+      1 => '/chat',
       2 => '/favorites',
       3 => '/settings',
       _ => '/home',
@@ -51,8 +51,8 @@ class AppBottomNavigation extends StatelessWidget {
           label: 'Home',
         ),
         NavigationDestination(
-          icon: Icon(Icons.explore_outlined),
-          selectedIcon: Icon(Icons.explore_rounded),
+          icon: Icon(Icons.chat_bubble_outline),
+          selectedIcon: Icon(Icons.chat_bubble),
           label: 'Explore',
         ),
         NavigationDestination(

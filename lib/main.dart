@@ -16,6 +16,7 @@ import 'ui/screens/settings_screen.dart';
 import 'ui/screens/media_gallery_screen.dart';
 import 'ui/screens/media_category_screen.dart';
 import 'ui/screens/favorites_unified_screen.dart';
+import 'ui/screens/chatbot_screen.dart';
 import 'services/favorites_service.dart';
 
 void main() {
@@ -91,6 +92,7 @@ class HadiyaHeritageApp extends StatelessWidget {
               '/settings': (_) => const SettingsScreen(),
               '/media': (_) => const MediaGalleryScreen(),
               '/media/category': (_) => const MediaCategoryScreen(),
+              '/chat': (_) => const ChatbotScreen(),
             },
             home: const WelcomeScreen(),
           );

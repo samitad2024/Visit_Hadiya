@@ -472,6 +472,86 @@ class AppLocalizations {
       'am': 'ለሊበላን የሚመስል ከድንጋይ የተቆረጠ ቤተ ክርስቲያን።',
       'en': 'A rock-hewn church similar to those in Lalibela.',
     },
+    // AI Chat
+    'chat_title': {
+      'hdy': 'Hadiya Assistant',
+      'am': 'የሐዲያ አስተዋዋቂ',
+      'en': 'Hadiya Assistant',
+    },
+    'chat_input_hint': {
+      'hdy': 'Ask me anything about Hadiya...',
+      'am': 'ስለ ሐዲያ ማንኛውንም ይጠይቁ...',
+      'en': 'Ask me anything about Hadiya...',
+    },
+    'chat_welcome_title': {
+      'hdy': 'Welcome to Hadiya Assistant!',
+      'am': 'እንኳን ደህና መጡ ወደ ሐዲያ አስተዋዋቂ!',
+      'en': 'Welcome to Hadiya Assistant!',
+    },
+    'chat_welcome_subtitle': {
+      'hdy':
+          'I am here to help you explore the rich heritage, culture, and history of the Hadiya people. Ask me anything!',
+      'am': 'የሐዲያ ሕዝብን ሀብታም ቅርስ፣ ባህል እና ታሪክ ለማስተዋወቅ እዚህ ነኝ። ማንኛውንም ይጠይቁ!',
+      'en':
+          'I am here to help you explore the rich heritage, culture, and history of the Hadiya people. Ask me anything!',
+    },
+    'chat_suggestions_title': {
+      'hdy': 'Try asking about:',
+      'am': 'ስለ እነዚህ ይጠይቁ:',
+      'en': 'Try asking about:',
+    },
+    'chat_feature_history': {
+      'hdy': 'History & Heritage',
+      'am': 'ታሪክ እና ቅርስ',
+      'en': 'History & Heritage',
+    },
+    'chat_feature_history_desc': {
+      'hdy': 'Learn about ancient Hadiya kingdoms and historical events',
+      'am': 'ስለ ጥንታዊ የሐዲያ መንግሥታት እና ታሪካዊ ክስተቶች ይወቁ',
+      'en': 'Learn about ancient Hadiya kingdoms and historical events',
+    },
+    'chat_feature_culture': {
+      'hdy': 'Culture & Traditions',
+      'am': 'ባህል እና ልማዶች',
+      'en': 'Culture & Traditions',
+    },
+    'chat_feature_culture_desc': {
+      'hdy': 'Discover festivals, customs, music, and language',
+      'am': 'በዓላትን፣ ልማዶችን፣ ሙዚቃን እና ቋንቋን ያግኙ',
+      'en': 'Discover festivals, customs, music, and language',
+    },
+    'chat_feature_places': {
+      'hdy': 'Places to Visit',
+      'am': 'የጎብኚነት ቦታዎች',
+      'en': 'Places to Visit',
+    },
+    'chat_feature_places_desc': {
+      'hdy': 'Get recommendations for historical sites and attractions',
+      'am': 'ለታሪካዊ ቦታዎች እና መስህቦች ምክሮችን ያግኙ',
+      'en': 'Get recommendations for historical sites and attractions',
+    },
+    'chat_feature_help': {
+      'hdy': 'App Navigation',
+      'am': 'የመተግበሪያ አሰሳ',
+      'en': 'App Navigation',
+    },
+    'chat_feature_help_desc': {
+      'hdy': 'Learn how to use app features and find content',
+      'am': 'የመተግበሪያ ባህሪያትን እንዴት እንደሚጠቀሙ እና ይዘቶችን እንዴት እንደሚያገኙ ይወቁ',
+      'en': 'Learn how to use app features and find content',
+    },
+    'chat_clear': {'hdy': 'Clear Chat', 'am': 'ውይይት አፅዳ', 'en': 'Clear Chat'},
+    'chat_clear_dialog_title': {
+      'hdy': 'Clear Chat History?',
+      'am': 'የውይይት ታሪክ ይፅዳ?',
+      'en': 'Clear Chat History?',
+    },
+    'chat_clear_dialog_message': {
+      'hdy': 'This will permanently delete all messages in this conversation.',
+      'am': 'ይህ በዚህ ውይይት ውስጥ ያሉትን ሁሉንም መልዕክቶች በቋሚነት ይሰርዛል።',
+      'en': 'This will permanently delete all messages in this conversation.',
+    },
+    'cancel': {'hdy': 'Cancel', 'am': 'ሰርዝ', 'en': 'Cancel'},
   };
 
   String t(String key) =>
