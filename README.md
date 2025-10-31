@@ -9,7 +9,7 @@ A cross‑platform Flutter app to showcase the culture, history, sites, and biog
 - Device Preview enabled on web to emulate mobile frames
 
 ## Tech
-- Flutter 3.x, Dart 3.x
+- Flutter 3.x, Dart
 - Provider for state management
 - google_fonts, flutter_svg, intl, flutter_localizations
 
