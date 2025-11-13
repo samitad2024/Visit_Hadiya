@@ -1,4 +1,4 @@
-# Hadiya Heritage (web + Android)
+# Hadiya Heritage  Android App
 
 A cross‑platform Flutter app to showcase the culture, history, sites, and biographies of the Hadiya people (Hossana, Ethiopia). Built with Provider state management, clean feature folders, and early localization support.
 
