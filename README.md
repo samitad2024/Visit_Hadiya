@@ -35,10 +35,6 @@ Early development uses simple map-based texts. Replace with ARB/intl for product
 ## Assets & Credits
 All images are placeholders (SVG). Replace with verified graphics/media before release.
 
-## Contributing
-1. Create a feature branch
-2. Add tests where relevant
-3. Create a PR describing the change and screenshots
 
 ---
 This repository follows the blueprint in `blueprint.md` — accuracy first, culturally respectful content, and offline-friendly design.
