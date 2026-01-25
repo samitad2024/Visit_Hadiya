@@ -13,12 +13,6 @@ A cross‑platform Flutter app to showcase the culture, history, sites, and biog
 - Provider for state management
 - google_fonts, flutter_svg, intl, flutter_localizations
 
-## Run
-```powershell
-flutter pub get
-flutter run -d chrome
-```
-
 Device Preview: Runs automatically in debug; you can switch devices from the Device Preview panel in the app (Chrome).
 
 ## Project structure
