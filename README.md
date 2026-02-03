@@ -26,8 +26,3 @@ Device Preview: Runs automatically in debug; you can switch devices from the Dev
 ## Localization
 Early development uses simple map-based texts. Replace with ARB/intl for production. Hadiyigna strings are placeholders with TODO: verify.
 
-
-
-
----
-This repository follows the blueprint in `blueprint.md` — accuracy first, culturally respectful content, and offline-friendly design.
