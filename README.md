@@ -21,7 +21,7 @@ Device Preview: Runs automatically in debug; you can switch devices from the Dev
 - `lib/data/mock/` — Mock repositories/data
 - `lib/models/` — Domain models
 - `lib/l10n/` — Lightweight map-based localization (migrate to ARB later)
-- `lib/core/theme/` — Theme and colors
+- `lib/core/theme/` .. — Theme and colors
 
 ## Localization
 Early development uses simple map-based texts. Replace with ARB/intl for production. Hadiyigna strings are placeholders with TODO: verify.
